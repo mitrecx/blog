@@ -25,3 +25,27 @@ man vimtutor
 ![](http://mitre.oss-cn-hangzhou.aliyuncs.com/blog_pic5/vim-tutor-lesson4.png)  
 ![](http://mitre.oss-cn-hangzhou.aliyuncs.com/blog_pic5/vim-tutor-lesson5.png)  
 ![](http://mitre.oss-cn-hangzhou.aliyuncs.com/blog_pic5/vim-tutor-lesson6.png)  
+
+# tutor 之外
+" . "是一个重复命令。  
+" . "用于重复<font color=orange>输入模式</font>或<font color=orange>命令模式</font>中的命令。  
+例如：  
+4dd删除4行，然后按" . "会继续删除4行；  
+/(查找) , n(查找下一个) , .(重复上一个编辑命令)这三个命令构成了奇妙的三重唱，如：/int(查找int)，用cw替换int输入double，然后按n(查找下一个),再按. ，下一个int直接变成double，不用再用键盘输入double了。
+
+----
+ps.  
+vim里有3个操作符(operator)： c(change)，d(delete)，y(yank,copy)  
+操作符常与其他命令(motion)组合使用，常用的motions：   
+$(行末)  
+G(文件末) -- d30G删除光标到第30行的内容    
+w(操作一个词)  
+e(end of word,和w差不多)  
+/(操作到第一次匹配到的内容那一行（不包括）) -- ?反向  
+
+一个操作符自身重复时（cc，dd，yy），仅对当前行起作用。可prepend数字，以操作多行。  
+
+----  
+:e FILENAME -- （需要保存当前文件，）自动退出文件，打开名为FILENAME的文件  
+
+：r FILENAME -- retrieving and mering，可以配合!(ex模式下的exclamation point)，如： ":r !ls -al"  
