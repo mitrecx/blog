@@ -1,7 +1,7 @@
 ---
 title: Linux系统程序设计1--文件
 date: 2018-02-14 19:48:53
-tags:
+tags: Linux
 ---
 
 # 1.  linux系统程序设计---文件
@@ -72,7 +72,9 @@ open: No such file or directory
 
 **在读写一个文件之前，必须要用open打开它。**  
 open语法：   
+```c
 int open（const char \*path, int oflag, ...)  ;  
+```
 **open以int形式返回一个文件说明符 (<font color=orange> file description</font> ) 。当发生错误时，open返回 -1 。**  
 第一个参数(path)是一个指针，指向一个表示文件路径名的字符串(绝对路径或相对路径)，  
 第二个参数(oflag)用于**设置打开模式**(读、写或读-写)。这一模式用三个符号常量表示：  

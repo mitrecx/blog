@@ -2,9 +2,9 @@
 title: linux后台程序
 date: 2017-11-27 15:52:12
 tags:
-  - linux
+  - Linux
   - tech
-categories: linux
+categories: Linux
 ---
 
 在终端输入<font color=green>htop</font>

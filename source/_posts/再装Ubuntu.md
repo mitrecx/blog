@@ -4,7 +4,7 @@ date: 2017-11-30 14:33:37
 tags:
   - 踩过的坑
   - ramble
-  - linux
+  - Linux
 categories: 闲聊
 ---
 

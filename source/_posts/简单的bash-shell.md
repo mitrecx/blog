@@ -1,10 +1,10 @@
 ---
 title: 简单的bash shell
 date: 2017-11-30 13:47:36
-tags: 
-  - linux
+tags:
+  - Linux
   - tech
-categories: linux
+categories: Linux
 ---
 
 # 关于文件
@@ -125,9 +125,9 @@ du -sh * | sort -nr
 synopsis：  
   grep [options] pattern [file]  
   在名为 file 的文件中查找 含有pattern关键字的行。
-  
+
 options:
- 
+
  - -v 相反匹配
  - -c 匹配到的总行数
  - [] 正则匹配指定字符，如[tf]匹配t或f
@@ -153,4 +153,3 @@ tar –jcvf filename.tar.bz2 filename(dirname)
 #解压：
 tar –jxvf filename.tar.bz2 filename(dirname)
 ```
-

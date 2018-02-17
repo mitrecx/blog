@@ -2,9 +2,9 @@
 title: linux环境变量
 date: 2017-12-01 16:07:55
 tags:
-  - linux
+  - Linux
   - tech
-categories: linux
+categories: Linux
 ---
 
 # 什么是环境变量

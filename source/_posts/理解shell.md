@@ -3,8 +3,8 @@ title: 理解shell
 date: 2017-11-30 18:06:57
 tags:
   - tech
-  - linux
-categories: linux
+  - Linux
+categories: Linux
 ---
 
 # 1. shell 类型
