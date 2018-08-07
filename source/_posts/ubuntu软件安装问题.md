@@ -23,9 +23,8 @@ sudo apt-get update
 ```
 ---------  
 
-
 # /var/lib/apt/lists
-/var 包括系统运行时要 **改变** 的数据。   
+/var 包括系统运行时要 **改变** 的数据。  
 
 <table>
   <tr>
@@ -50,7 +49,7 @@ sudo apt-get update
   <tr>
     <td>/var/spool/news (新闻组)</td>
     <td>/var/lock (程序相关)</td>
-  </tr>  
+  </tr>
 
 如果/usr是 **安装时** 会占用较大硬盘容量的目录，那么/var就是在系统 **运作后** 才会渐渐占用硬盘容量的目录。   
 
