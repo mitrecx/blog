@@ -25,31 +25,7 @@ sudo apt-get update
 
 # /var/lib/apt/lists
 /var 包括系统运行时要 **改变** 的数据。  
-
-<table>
-  <tr>
-    <td ></td>
-    <td>可分享的(shareable)</td>
-    <td>不可分享的(unshareable)</td>
-  </tr>
-  <tr>
-    <td rowspan="2">不变的(static)</td>
-    <td>**/usr (软件放置处)**</td>
-    <td>/etc (配置文件)</td>
-  </tr>
-  <tr>
-    <td>/opt (第三方协力软件)</td>
-    <td>/boot (开机与核心档)</td>
-  </tr>
-  <tr>
-    <td rowspan="2">**可变动的(variable)**</td>
-    <td>/var/mail (使用者邮件信箱)</td>
-    <td>/var/run (程序相关)</td>
-  </tr>
-  <tr>
-    <td>/var/spool/news (新闻组)</td>
-    <td>/var/lock (程序相关)</td>
-  </tr>
+![](https://mitre.oss-cn-hangzhou.aliyuncs.com/java-%E8%BE%BE%E5%86%85%E8%A7%86%E9%A2%91%E5%AD%A6%E4%B9%A0/linux_var.png)  
 
 如果/usr是 **安装时** 会占用较大硬盘容量的目录，那么/var就是在系统 **运作后** 才会渐渐占用硬盘容量的目录。   
 
