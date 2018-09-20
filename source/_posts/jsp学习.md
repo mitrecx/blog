@@ -40,6 +40,7 @@ jsp表达式的唯一的作用是，不用写print 语句了。。。
 out  
 request  
 response  
+session
 
 4、 指令  
 指令：通知容器，在将 jsp 文件转化成 servlet 类时，做一些额外的处理，比如 导包。  

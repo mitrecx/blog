@@ -138,4 +138,22 @@ http://localhost:8888/TestTomcat2/bmi
 
 post 请求特点：
 1. 不会把请求参数显示在URL中
-2. 相对安全  （注：不会对请求参数加密）   
+2. 相对安全  （注：不会对请求参数加密）
+
+# 4. HTTP 状态码：  
+404 :    
+<font color=red>HTTP Status 404 – Not Found</font> 没有资源  
+描述：The requested resource is not available.   
+或者是，The origin server did not find a current representation for the target resource or is not willing to disclose that one exists.  
+<font color=purple>可能原因：</font>  
+1. 请求地址写错  
+2. 没有部署该应用
+3. map.xml 中，<servlet-name> 不一致
+
+500 :  
+<font color=red>HTTP Status 500 – Internal Server Error</font> 服务器程序运行错误   
+cannot be cast to javax.servlet.Servlet  
+<font color=purple>可能原因：</font>  
+1. 我们自己写的 servlet 没有继承 HTTPServlet. (console: cannot be cast to javax.servlet.Servlet)  
+2. map.xml 中，<servlet-class> 写错了，包中没有这个 class。  
+3. 代码写的不严谨，比如 对请求参数没有做检查就去转换。  

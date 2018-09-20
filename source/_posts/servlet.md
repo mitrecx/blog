@@ -44,26 +44,35 @@ step4.&nbsp; Tomcat容器创建 servlet 对象，然后调用该对象的 servic
 step5.&nbsp; Tomcat 容器读取 response 中的处理结果，并将处理结果打包发送给 browser。  
 step6.&nbsp; 浏览器解析相应数据包，生成相应的页面。  
 
-# 4. HTTP 状态码：  
-404 :    
-<font color=red>HTTP Status 404 – Not Found</font> 没有资源  
-描述：The requested resource is not available.   
-或者是，The origin server did not find a current representation for the target resource or is not willing to disclose that one exists.  
-<font color=purple>可能原因：</font>  
-1. 请求地址写错  
-2. 没有部署该应用
-3. map.xml 中，<servlet-name> 不一致
-
-500 :  
-<font color=red>HTTP Status 500 – Internal Server Error</font> 服务器程序运行错误   
-cannot be cast to javax.servlet.Servlet  
-<font color=purple>可能原因：</font>  
-1. 我们自己写的 servlet 没有继承 HTTPServlet. (console: cannot be cast to javax.servlet.Servlet)  
-2. map.xml 中，<servlet-class> 写错了，包中没有这个 class。  
-3. 代码写的不严谨，比如 对请求参数没有做检查就去转换。  
 
 
-# 5. 请求参数  
+
+# 4. 请求资源路径 和 请求参数  
+## 4.1 web.xml 配置请求资源路径
+容器如何处理请求资源路径：  
+在浏览器地址栏输入 http://ip:port/web_App_name/hello.html  
+容器根据 **应用名** 找到 应用所在的目录  
+容器默认调用一个servlet，去 web.xml 中查找有没有一个和"/hello.html" 匹配的servlet。具体调用按下列顺序：  
+1. 如果 web.xml 中有，就调用此servlet。   
+2. 如果 web.xml 中没有，就调用 WebContent(应用主目录) 目录 下的 对应的"/hello.html" 文件。  
+3. 如果 Webcontent 目录下也没有资源文件， 将会报 404 。  
+
+web.xml 中配置 <url-pattern\> </url-pattern\> 有三种匹配方式：  
+1、 精确匹配  
+<url-pattern\> /hello.html </url-pattern\>  
+
+2、 通配符匹配  
+<url-pattern\> /\* </url-pattern\>  
+使用 " **\*** " 匹配 0 或 多个 字符  
+
+3、 **后缀匹配**  
+<url-pattern\> **\*.do** </url-pattern\>  
+使用 " **\*.** " 开头，后接多个字符 ,  
+比如，后接 do ，会处理所有 以 " **.do** " 结尾的请求。  
+**注：  后缀匹配 不以 " / "  开头 。**
+
+
+## 4.2 请求参数
 没有请求参数：  
 http://localhost:8080/TestTomcat2/wowowo  
 有请求参数：  
@@ -74,8 +83,7 @@ http://localhost:8080/TestTomcat/bmi<font color=red>?weight=60&height=1.9</font>
 
 
 
-
-# 6. 字符集编码问题
+# 5. 字符集编码问题
 
 servlet 输出中文为什么会有乱码？  
 out.println 方法在默认情况下，会使用"iso-8859-1"来编码  
@@ -94,7 +102,7 @@ response.setContentType("text/html;charset=utf-8")
 request.setCharacterEncoding("utf-8");  
 ```
 
-# 7. 转发  
+# 6. 转发  
 1、 转发：  
 一个 **web 组件 (servlet/jsp)** 将为完成的处理交个另外一个 **web 组件** 继续做。  
 比如，一个 servlet 将处理结果 转发 给一个 jsp 来展现。  
@@ -128,3 +136,45 @@ rd.forward(request, response);
 注：  
 * 转发之后 ， 浏览器的地址不变。即，浏览器访问的地址，不会随着转发而改变，转发是服务器内部的事情，浏览器并不知情。  
 * 转发地址有限制，必须是同一个应用。  
+* 转发可以共享请求对象，响应对象。 **重定向不能共享，因为重定向浏览器会发起两次请求。第一次请求完毕会销毁request 和 response 。**    
+
+
+# 7. 处理servlet 运行时异常
+
+处理 servlet  运行时异常有两种方法：   
+
+1、 转发到异常处理页面  
+绑定异常处理信息到 **request**  
+转发到一个异常处理页面  
+编写异常处理页面  
+
+2、 交个容器处理  
+将异常抛给容器，  throw new ServletException(e)  
+在 web.xml 中配置异常处理页面，**<error-page>**  
+编写异常处理异常  
+
+通常， **系统异常** (如，数据库连接断了)交给容器处理。   
+**应用异常** (如，登录密码错误)一般使用转发来处理。  
+
+# 8. 路径问题  
+
+1. 超链接:  
+<a href="delete.do"\>删除<a\>  
+2. 表单提交:  
+<form action="add.do"\>  
+3. 重定向:  
+response.sendRedirect("list.do");  
+4. 转发：  
+request.getRequestDispatcher("listEmp.jsp");   
+
+绝对路径： 以 “/”  开头  
+**超链接、表单提交、重定向** 从应用名开始写。   
+**转发** 从应用名之后开始写。  
+
+硬编码：路径写死，如：/webApp/jsp/hello.jsp  
+注意：  不要把 **应用名** 直接写在路径里，应该使用下面的方法获取部署时的应用名：
+```java
+String rootDir = request.getContextPath()  
+```
+
+相对路径： 不以 “/” 开头  
