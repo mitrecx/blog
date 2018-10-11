@@ -60,7 +60,7 @@ c 是命名空间的前缀(别名)
 </c:forEach>
 <!--注：每次从集合或数组中取一个元素，然后绑定到pageContext上，绑定名由var属性指定-->
 ```
-
+[tld自定义jsp标签的实现](#1)
 ## 2. el表达式
 el (Expression Language) 表达式是一套简单的运算规则，用于给jsp标签的属性赋值，也可以直接输出。  
 
@@ -87,3 +87,6 @@ el (Expression Language) 表达式是一套简单的运算规则，用于给jsp�
 等价于 request.getParameter("username")  
 * **<font color='#00B2EE'>${paramValues.friends}</font>**  
 等价于request.getParameterValues("friends")  
+
+<h2 id="1">3. jsp 自定义标签</h2>
+tld (tag lib descriptor)
