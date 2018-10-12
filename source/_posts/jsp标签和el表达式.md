@@ -89,4 +89,77 @@ el (Expression Language) 表达式是一套简单的运算规则，用于给jsp�
 等价于request.getParameterValues("friends")  
 
 <h2 id="1">3. jsp 自定义标签</h2>
-tld (tag lib descriptor)
+tld (tag lib descriptor)   
+自己写一个标签：  
+1、 在WEB-INF目录下建一个文件hello.tld, 文件内容如下：   
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<taglib xmlns="http://java.sun.com/xml/ns/j2ee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
+	version="2.0">
+	<tlib-version>1.0</tlib-version>
+	<short-name>ExampleTLD</short-name>
+	<uri>/WEB-INF/hello.tld</uri>
+  <description>完成一个自定义jsp标签库</description>
+	<tag>
+		<name>hello</name>
+		<tag-class>test.HelloTag</tag-class>
+		<body-content>empty</body-content>
+	</tag>
+</taglib>
+```
+![](https://mitre.oss-cn-hangzhou.aliyuncs.com/blog-2018-09/jspTLD1.png)
+2、 编写标签的实现类  
+```java
+package test;
+import java.io.IOException;
+import javax.servlet.jsp.JspException;
+import javax.servlet.jsp.JspWriter;
+import javax.servlet.jsp.tagext.SimpleTagSupport;
+public class HelloTag extends SimpleTagSupport {
+	@Override
+	public void doTag() throws JspException, IOException {
+		JspWriter out=getJspContext().getOut();
+		out.println("自定义标签输出，由JspWriter输出");
+	}
+}
+```
+3、 使用自定义的tag  
+```html
+<%@page pageEncoding="utf-8" contentType="text/html; charset=utf-8" %>
+<%@taglib uri="/WEB-INF/hello.tld" prefix="c1" %>
+<html>
+	<head>
+	</head>
+	<body style="font-size: 30px;">
+		<p>自定义标签</p>
+		<c1:hello/>
+	</body>
+</html>
+```
+运行结果：  
+![](https://mitre.oss-cn-hangzhou.aliyuncs.com/blog-2018-09/jspTLD2.png)  
+
+注：  
+如果在标签里添加属性，需要在实现类里加上对应的属性和setter，实现类属性的值是从标签属性中获取的。    
+同时还需要在tld 文件中配置 **attribute** 标签，  
+**attribute** 的子标签(tag Subelements/嵌套元素nested elements) 介绍如下：  
+```html
+<attribute>
+(Optional) Defines the name of the attribute as it appears in the tag element in the JSP page. For example:
+  <name>myAttribute</name>
+  (Required)attribute name
+  <required>true | false</required>
+  (Optional) Defines whether this attribute has optional use in the JSP page.   
+  If not defined here, the default is false — that is, the attribute is optional by default.
+  If true is specified, and the attribute is not used in a JSP page, a translation-time error occurs.
+  <rtexprvalue>true | false</rtexprvalue>
+  (Optional) Defines whether this attribute can take a scriptlet expression as a value,
+  allowing it to be dynamically calculated at request time.
+  If this element is not specified, the value is presumed to be false.
+</attribute>
+```
+**这只是一个 taglib 入门的例子，很简单，实现类继承的 SimpleTagSupport 还有一些方法, 这里不再深入学习**
+## 参考
+1、 [Creating a Tag Library Descriptor](https://docs.oracle.com/cd/E21043_01/web.1111/e13722/tld.htm)  
