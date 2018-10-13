@@ -60,7 +60,7 @@ Calendar c1= ac.getBean("calendar1",Calendar.class);
 applicationContext.xml文件 **<font color='#00B2EE'>用静态工厂方法创建bean对象</font>** 配置如下(所谓工厂，就是封装了对象场景的细节)：  
 ```xml
 <!--  相当于Calendar.getInstance() ; 注意id的值唯一-->
-<bean id="calendar2" class="java.util.GregorianCalendar" factory-method="getInstance">
+<bean id="calendar2" class="java.util.Calendar" factory-method="getInstance">
   <!-- factory-method的值是类中的方法名 -->
 </bean>
 ```
