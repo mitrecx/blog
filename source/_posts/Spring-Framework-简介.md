@@ -1,6 +1,6 @@
 ---
-title: Spring Framework 简介
-date: 2018-10-13 01:25:37
+title: Spring学习1-Spring Framework 简介
+date: 2018-10-12 01:25:37
 tags: Spring
 categories: Spring
 ---
@@ -9,10 +9,10 @@ categories: Spring
 这样做思路和结构都很清晰，没有什么不好。  
 那为什么我们还要用Spring 框架？  
 原因：  
-1. **松耦合**  
-2. 组件复用，将系统服务(安全、事务、日志等)从业务逻辑中分离出来--**面向切面编程**。  
-3. **简化web开发**。  
-可见，Spring 框架的设计哲学是优秀的，又能缩短web应用开发时间，于是许多开发者选择了Spring web MVC。  
+1. **松耦合**--IoC, AOP。    
+2. **面向切面编程(AOP)**--组件复用，将系统服务(安全、事务、日志等)从业务逻辑中分离出来。  
+3. **简化web开发**--缩短开发时间。  
+可见，Spring 框架的设计哲学是优秀的，于是许多开发者选择了Spring web MVC。  
 
 # 2. 了解一下-术语Spring
 不同的背景下，Spring的含义是不同的。  
