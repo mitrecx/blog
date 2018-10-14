@@ -8,8 +8,8 @@ categories: Spring
 创建，初始化，释放资源，销毁。  
 
 下载[Spring jar 包](https://repo.spring.io/release/org/springframework/spring/)   
-
-## a. 搭建Spring IoC开发环境  
+## 1.1 如何管理对象
+### a. 搭建Spring IoC开发环境  
 1. 引入相关jar包  
 spring-core-5.0.0.RELEASE  
 spring-context-5.0.0.RELEASE  
@@ -41,7 +41,7 @@ commons-logging
 </beans>
 ```
 
-## b. 在applicationContext.xml文件中配置bean，通过ApplicationContext对象取得配置的bean
+### b. 在applicationContext.xml文件中配置bean，通过ApplicationContext对象取得配置的bean
 applicationContext.xml文件 **<font color='#00B2EE'>用构造方法创建bean对象</font>** 配置如下：  
 ```xml
 <!--  相当于 new GregorianCalendar(); 注意id的值唯一-->
@@ -92,7 +92,7 @@ java类
 Date date=ac.getBean("date1",Date.class);
 ```
 
-**Spring创建bean对象控制**  
+## 1.2 Spring创建bean对象---属性配置
 1. 控制对象创建方式：<bean\>元素的 **<font color='#FF34B3'>scope属性</font>** 支持 **<font color='#8080f0'>singleton</font>** 和 **<font color='#8080f0'>prototype</font>** 两种创建方式。  
 scope的缺省值是singleton，**一般用默认**。  
 **<font color='#8080f0'>singleton</font>** 方式：每次 **ac.getBean("id")** 相同id取出的是同一个bean对象 (Spring容器中只实例化一个bean对象)。  
@@ -208,5 +208,6 @@ applicationContext.xml 配置：
   <constructor-arg index="3" ref="comp2"></constructor-arg>
 </bean>
 ```
+~~这里不对bean的自动注入autowire做说明。~~  
 # 3. 总结
 简而言之，IoC控制反转就是把对象创建控制权 从处理类手里 交到了Spring手里 ，这一控制权改变建立在 依赖注入 的机制上。  
