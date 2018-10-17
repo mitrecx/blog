@@ -182,6 +182,7 @@ public class MyDataSource {
 		<prop key="password">123</prop>
 		<prop key="driver">com.mysql.jdbc.Driver</prop>
 		<prop key="url">jdbc:mysql://cherry.mitrecx.cn:3306/DBmitre?useUnicode=true&amp;characterEncoding=utf8</prop>
+    <!-- 当然，这些prop也可以写在文件中，通过location属性加载 -->
 	</util:properties>
 </beans>
 ```
