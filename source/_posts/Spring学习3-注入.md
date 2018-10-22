@@ -1,9 +1,14 @@
 ---
-title: Spring学习3-注入
+title: Spring学习3-Spring IoC各种类型注入
 date: 2018-10-13 21:18:24
 tags: Spring
 categories: Spring
 ---
+[Bean Overview](https://docs.spring.io/spring/docs/5.1.1.RELEASE/spring-framework-reference/core.html#spring-core) :  
+A bean definition is essentially a recipe for creating one or more objects.   
+Bean定义本质上是创建一个或多个对象的配方(方法)。  
+
+
 # 1. 各种类型注入的配置方式
 给bean的属性注入值，这些配置方式都是固定的，不难理解。  
 所以直接给出一个例子展示各种类型的注入方法。  
