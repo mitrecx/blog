@@ -23,4 +23,9 @@ Spring 提供了：
   * AOP事务管理  
   * 统一异常处理 DataAccessException  
 
-0601 1:46
+Spring + JDBC 开发步骤：  
+1. 搭建开发环境：  
+引入各种jar包，包括Spring(Core，AOP，DAO) ,连接池dbcp，JDBC包等。  
+2. 编写实体类domain  
+3. 编写Dao数据库操作逻辑  
+4. applicationContext.xml 中配置，扫描Dao组件，**注入 JdbcTamplate 对象**  

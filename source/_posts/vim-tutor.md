@@ -49,3 +49,31 @@ e(end of word,和w差不多)
 :e FILENAME -- （需要保存当前文件，）自动退出文件，打开名为FILENAME的文件  
 
 ：r FILENAME -- retrieving and mering，可以配合!(ex模式下的exclamation point)，如： ":r !ls -al"  
+
+**配置vimrc**：  
+```sh
+vim ~/.vimrc
+```
+添加以下内容：  
+```sh
+#显示行号
+set nu
+#自动语法高亮
+syntax on
+# 缩进
+set autoindent
+set smartindent
+
+#匹配高亮
+set hlsearch
+# 默认缩进4个空格
+set shiftwidth=4
+#使用tab时 tab空格数
+set softtabstop=4
+#tab 代表4个空格
+set tabstop=4
+#使用空格替换tab
+set expandtab
+# 根据 /usr/share/vim/vim74/colors，更改配色方案，例如：
+color murphy
+```
