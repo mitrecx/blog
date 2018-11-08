@@ -209,12 +209,14 @@ applicationContext.xml
 </beans>
 ```
 controller组件 helloSpring.java  
+
 ```java
 package controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+
 @Controller
 public class HelloController {
 	@RequestMapping("/hello.do") //直接把请求和处理方法关联
@@ -225,10 +227,10 @@ public class HelloController {
 		mav.setViewName("helloSpring");
 		return mav;
 	}
-
-  //可以注解多个RequestMapping
+  /*可以写多个方法，结合RequestMapping注解匹配处理多个请求*/
 }
-```  
+```
+
 页面 helloSpring.jsp  
 ```html
 <%@page pageEncoding="utf-8" contentType="text/html; charset=utf-8" %>
