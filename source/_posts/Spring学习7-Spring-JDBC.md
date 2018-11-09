@@ -15,7 +15,8 @@ categories: Spring
 通常，我们会编写一个 DBUtils 类来管理连接，然后编写 DAO 封装增删改查方法。  
 
 因为更简便、耦合度低的操作数据库的框架出现，现在人们开发程序很少直接用 JDBC 了。  
-本文介绍 Spring 提供的 API JdbcTemplate ，后面再介绍 MyBatis框架。  
+本文介绍 Spring 提供的 API JdbcTemplate ，后面再介绍 MyBatis 框架。  
+JDBCTemplate 封装了获取连接，执行SQL，释放连接等操作。  
 
 <h1 id="id1"> 1. Spring 与 JDBC 整合</h1>  
 Spring 提供了：
