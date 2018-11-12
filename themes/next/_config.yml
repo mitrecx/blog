@@ -42,7 +42,9 @@ footer:
   copyright:
   # -------------------------------------------------------------
   # Hexo link (Powered by Hexo).
+  counter: true
   powered: true
+  
 
   theme:
     # Theme & scheme info link (Theme - NexT.scheme).

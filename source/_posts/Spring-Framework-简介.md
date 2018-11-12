@@ -43,4 +43,5 @@ Spring Framework被分离成多个模块，我们开发的web应用可以选择�
 # 参考资料  
 1、[Spring Framework Overview](https://docs.spring.io/spring/docs/5.1.0.RELEASE/spring-framework-reference/overview.html#overview)  
 2、[ Spring Projects](https://spring.io/projects)  
-3、[Spring + Struts + Hibernate简介-2016](https://www.cnblogs.com/wt695742319/p/5500392.html)  
+3、[SSH框架——Spring + Struts + Hibernate简介-2016](https://www.cnblogs.com/wt695742319/p/5500392.html)  
+4、[SSM框架——详细整合教程(Spring + SpringMVC + MyBatis)](https://www.cnblogs.com/zyw-205520/p/4771253.html)

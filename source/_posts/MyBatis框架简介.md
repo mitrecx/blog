@@ -248,3 +248,20 @@ public class TestEmp {
 ![](https://mitre.oss-cn-hangzhou.aliyuncs.com/blog-2018-11/2018-11-09_101010.png)  
 
 # 4 动态 SQL  
+* if  
+* choose (when, otherwise)  
+* trim (where, set)  
+* foreach  
+
+动态 SQL 通常要做的事情是根据条件包含 where 子句的一部分。比如：  
+```xml
+<select id="findActiveBlogWithTitleLike"
+     resultType="Blog">
+  SELECT * FROM BLOG
+  WHERE state = ‘ACTIVE’
+  <if test="title != null">
+    AND title like #{title}
+  </if>
+</select>
+```
+[MyBatis官网对动态SQL做了详细的说明](http://www.mybatis.org/mybatis-3/zh/dynamic-sql.html)，这里不再展开。  

@@ -16,7 +16,7 @@ Java SE 10 2018年3月发布。
 **注解** : 在 类的定义，方法的定义，成员变量的定义 前使用，格式为 **@注解标记名** 。   
 
 # 1. 组件扫描 (component-scan)  
-可以根据包的路径，把包下所有的组件扫描，如果发现组件类定义前有以下标记，将会把组件扫描的Spring IoC 容器，这样就不用同一个包下的组件就不用一个一个的在主配置文件中配置bean了。     
+可以根据包的路径，把包下所有的组件扫描，如果发现组件类定义前有以下标记，将会把组件扫描的Spring IoC 容器，这样同一个包下的组件就不用一个一个的在主配置文件中配置bean了。     
 * @Controller  
 * @Service  
 * @Repository  
@@ -88,11 +88,11 @@ public class LoginController {
 }
 ```
 注：  
-扫描到Spring IoC容器中的组件 id 默认类名并且首字母小写。  
+扫描到Spring IoC容器中的组件 id 默认是 **此类名并且首字母小写**。  
 如果想要改变 id 名， 可以在注解后加指定的id名：  
-**@Controller(loginComponent)**    
+**@Controller("loginComponent1")**    
 
-再举个例子，  
+
 利用注解注入属性：  
 ```java
 package other;
@@ -101,10 +101,10 @@ import javax.annotation.Resource;
 
 @Component
 public class Student {
-  @Resource //注入 id 为 phone 的对象
+  @Resource //注入 id 为 phone(默认和属性同名) 的对象
   private Phone phone;
 
-  //@Resource(name="指定id") 可以注入指定id的对象
+  //@Resource(name="指定id") 可以通过name指定id 来注入 指定的对象
 
   //@Autowired 按类型注入
 }
