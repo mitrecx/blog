@@ -20,22 +20,27 @@ CREATE SEQUENCE 序列名;
 
 　　[{CACHE n| NOCACHE}];
 ```
-1、 **<font color='#00b33c'>Increment by n</font>** ， 步长为n  
+1、   
+**<font color='#00b33c'>Increment by n</font>** ， 步长为n  
 **默认为 1**
 
-2、 **<font color='#00b33c'>Stat with n</font>** ， 开始值为n  
+2、   
+**<font color='#00b33c'>Stat with n</font>** ， 开始值为n  
 **默认为 1**  
 
-3、 **<font color='#00b33c'>Maxvalue n</font>** ， 最大值  
-  **<font color='#00b33c'>Minvalue n</font>** ，  最小值  
-  **<font color='#00b33c'>NOMAXVALUE</font>** ， 无最值(最大：10的27次方，最小：-10的26次方)    
+3、  
+**<font color='#00b33c'>Maxvalue n</font>** ， 最大值  
+**<font color='#00b33c'>Minvalue n</font>** ，  最小值  
+**<font color='#00b33c'>NOMAXVALUE</font>** ， 无最值(最大：10的27次方，最小：-10的26次方)    
 **默认 无最值**  
 
-4、 **<font color='#00b33c'>CYCLE</font>** 循环，递增或递减过最值时，回到起始值循环  
+4、   
+**<font color='#00b33c'>CYCLE</font>** 循环，递增或递减过最值时，回到起始值循环  
 **<font color='#00b33c'>NOCYCLE</font>** 非循环，递增或递减过最值时，报错。   
 **默认 非循环**  
 
-5、 **<font color='#00b33c'>CACHE n</font>** 缓冲， 定义存放序列的内存块的大小。  
+5、   
+**<font color='#00b33c'>CACHE n</font>** 缓冲， 定义存放序列的内存块的大小。  
 **默认为 20**   
 
 # 访问序列  
