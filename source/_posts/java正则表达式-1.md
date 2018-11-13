@@ -4,7 +4,7 @@ date: 2018-10-30 09:21:54
 tags: 正则表达式
 categories: java
 ---
-**java.util.regex** 下有两个类，**<font color='#3399ff'>Matcher</font>** 和 **<font color='#00e600'>Pattern</font>** 。    
+**java.util.regex** 下有两个类，**<font color='#00e600'>Pattern</font>** 和 **<font color='#3399ff'>Matcher</font>** 。    
 # 1. 抛砖引玉  **<font color='#00e600'>Pattern.matches</font>**
 
 **Pattern.matches(regex,str)** 要求 **字符串str** <font color='#cc00cc'>完全符合</font> **匹配规则(字符串)regex** ，返回结果才为 true。    
