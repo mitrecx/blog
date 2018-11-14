@@ -82,7 +82,7 @@ el (Expression Language) 表达式是一套简单的运算规则，用于给jsp�
 * empty运算, 判断集合是否为空，或字符串是否是一个空字符串  
 **<font color='#008B00'>如，${empty str}</font>** str为空返回true，不空为false  
 
-3、 **<font color='#00B2EE'>读取请求参数值，了解一下 (jsp负责展示数据，不适合处理请求)</font>**  
+3、 **<font color='#00B2EE'>读取请求参数值  (jsp负责展示数据，不适合处理请求)</font>**  
 * **<font color='#00B2EE'>${param.username}</font>**  
 等价于 request.getParameter("username")  
 * **<font color='#00B2EE'>${paramValues.friends}</font>**  
