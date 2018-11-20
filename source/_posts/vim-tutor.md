@@ -2,7 +2,7 @@
 title: vim tutor
 date: 2018-01-22 19:14:18
 tags: 编程工具
-
+categories: 编程工具
 ---
 
 # vim tutor

@@ -3,7 +3,6 @@ title: git简单教程
 date: 2017-11-26 20:04:51
 tags:
   - git
-  - tech
 categories: git
 ---
 # 从零开始－－简单使用

@@ -1,9 +1,8 @@
 ---
-title: linux环境变量
+title: Linux环境变量
 date: 2017-12-01 16:07:55
 tags:
   - Linux
-  - tech
 categories: Linux
 ---
 

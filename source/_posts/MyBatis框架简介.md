@@ -1,7 +1,9 @@
 ---
 title: MyBatis框架简介
 date: 2018-11-08 19:15:50
-tags: java
+tags:
+- java
+- 数据库
 categories: java
 ---
 

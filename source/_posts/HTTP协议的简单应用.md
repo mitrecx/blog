@@ -2,7 +2,7 @@
 title: HTTP协议的简单应用
 date: 2018-09-01 21:27:44
 tags: HTTP协议
-categories: HTTP协议
+categories: 网络
 ---
 # 1. 什么是HTTP协议
 

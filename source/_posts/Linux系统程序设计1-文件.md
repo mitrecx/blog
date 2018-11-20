@@ -2,6 +2,7 @@
 title: Linux系统程序设计1--文件
 date: 2018-02-14 19:48:53
 tags: Linux
+categories: Linux 
 ---
 
 # 1.  linux系统程序设计---文件

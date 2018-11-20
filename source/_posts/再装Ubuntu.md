@@ -2,10 +2,8 @@
 title: 再装Ubuntu
 date: 2017-11-30 14:33:37
 tags:
-  - 踩过的坑
-  - ramble
   - Linux
-categories: 闲聊
+categories: Linux
 ---
 
 由于之前遇到的Ubuntu16.04安装fcitx的问题没有解决，而后又遇到scim崩溃--把系统卡死（htop看到4核cpu和12G内存全部变红）。

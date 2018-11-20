@@ -2,6 +2,7 @@
 title: Linux系统管理
 date: 2018-02-18 09:31:41
 tags: Linux
+categories: Linux 
 ---
 
 # root: 系统管理员的登录

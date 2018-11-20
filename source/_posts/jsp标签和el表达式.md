@@ -56,7 +56,7 @@ c 是命名空间的前缀(别名)
 <!--用来遍历集合或数组-->
 <c:forEach items="" var="" varStatus="">
   <!--items属性指定要遍历的集合或数组-->
-  <!--var属性指定一个绑定名，绑定范围固定是pageCont-->
+  <!--var属性指定一个绑定名，绑定范围固定是pageContext-->
 </c:forEach>
 <!--注：每次从集合或数组中取一个元素，然后绑定到pageContext上，绑定名由var属性指定-->
 ```

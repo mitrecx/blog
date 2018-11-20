@@ -1,7 +1,7 @@
 ---
 title: No such file or directory
 date: 2017-12-17 12:19:28
-tags: 踩过的坑
+tags: Linux
 categories: Linux
 ---
 我已经下载了jdk8(Java SE Development Kit 8u151)，并配置好了环境变量，可是运行java时却提示，找不到文件。**文件确实是存在的，而且不是无效的符号链接文件。用file命令查看文件是可执行的。**<font color=orange>这报了一个不该报的错误啊？</font>    

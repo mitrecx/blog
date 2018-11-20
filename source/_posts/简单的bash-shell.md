@@ -3,7 +3,6 @@ title: 简单的bash shell
 date: 2017-11-30 13:47:36
 tags:
   - Linux
-  - tech
 categories: Linux
 ---
 

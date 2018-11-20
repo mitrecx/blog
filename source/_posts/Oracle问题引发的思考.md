@@ -1,7 +1,9 @@
 ---
 title: Oracle问题引发的思考
 date: 2018-10-22 15:33:18
-tags: Oracle
+tags:
+- Oracle
+- 数据库
 categories: 数据库
 ---
 

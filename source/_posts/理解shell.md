@@ -2,7 +2,6 @@
 title: 理解shell
 date: 2017-11-30 18:06:57
 tags:
-  - tech
   - Linux
 categories: Linux
 ---

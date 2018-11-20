@@ -1,7 +1,9 @@
 ---
 title: Oracle数据库-序列
 date: 2018-11-12 19:54:32
-tags: 数据库
+tags:
+- 数据库
+- Oracle
 categories: 数据库
 ---
 

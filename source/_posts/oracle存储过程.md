@@ -1,7 +1,9 @@
 ---
 title: oracle存储过程
 date: 2018-09-25 09:26:26
-tags: oracle
+tags:
+- Oracle
+- 数据库
 categories: 数据库
 ---
 ```sql

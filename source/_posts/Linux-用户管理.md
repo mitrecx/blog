@@ -6,7 +6,6 @@ tags:
 - Ubuntu
 categories:
 - Linux
-- Ubuntu
 ---
 
 # Linux用户管理

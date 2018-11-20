@@ -2,9 +2,9 @@
 title: github遇到的坑
 date: 2017-11-27 00:34:53
 tags:
-  - 踩过的坑
+  - hexo
   - git
-categories: git 
+categories: git
 ---
 部署博客时（hexo d）
 

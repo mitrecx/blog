@@ -48,7 +48,7 @@ public class TestString {
 结果：  
 ![](https://mitre.oss-cn-hangzhou.aliyuncs.com/blog-2018-11/javaStringTest1.png)  
 
-字符串的下标 **<font color=orange>从左开始，从零开始</font>**。  
+字符串的下标 **<font color=orange>从左开始，从零开始</font>**:    
 
 ![](https://mitre.oss-cn-hangzhou.aliyuncs.com/blog-2018-11/javaString2.png)  
 
@@ -87,7 +87,7 @@ public int indexOf(String subStr) //等价于： public int indexOf(String subSt
 在左边设置一个 查找起始索引。  
 **返回值 >= 起始索引fromIndex** 。  
 
-反向取子串的索引：  
+**<font color=red>反向</font>** 取子串的索引：  
 ```java
 public int lastIndexOf(String subStr, int fromIndex)
 ```
@@ -142,14 +142,7 @@ public String[] split(String regex, int limit)
 比如：  
 字符串 "boo:and:foo"   
 
-|Regex	|Limit|	Result|note|
-|--|--|--|--|
-|:|	2|	{ "boo", "and:foo" }|limit不够|
-|:|	5|	{ "boo", "and", "foo" }|limit足够大|
-|:|	-2|	{ "boo", "and", "foo" }|不限制|
-|o|	5|	{ "b", "", ":and:f", "", "" }||
-|o|	-2|	{ "b", "", ":and:f", "", "" }|不限制<br/>(保留尾部空字符串)|
-|o|	0|	{ "b", "", ":and:f" }|不限制<br/>不保留尾部空字符串|
+![](https://mitre.oss-cn-hangzhou.aliyuncs.com/blog-2018-11/2018-11-14_165446.png)   
 
 ```java
 public String[] split(String regex)

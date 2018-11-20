@@ -17,8 +17,10 @@ override: false
 favicon:
   small: /images/favicon-16x16.png
   medium: /images/favicon-32x32.png
-  apple_touch_icon: /images/apple-touch-icon.png
-  safari_pinned_tab: /images/logo.svg
+  #/images/apple-touch-icon.png
+  apple_touch_icon: https://mitre.oss-cn-hangzhou.aliyuncs.com/img/woAiLuo.jpg 
+  #
+  safari_pinned_tab: /images/logo.svg 
   #android_manifest: /images/manifest.json
   #ms_browserconfig: /images/browserconfig.xml
 
@@ -143,7 +145,7 @@ social_icons:
 # Sidebar Avatar
 # in theme directory(source/images): /images/avatar.gif
 # in site  directory(source/uploads): /uploads/avatar.gif
-#avatar: /images/avatar.gif
+avatar: https://mitre.oss-cn-hangzhou.aliyuncs.com/img/vlcsnap-2018-02-22-21h01m56s237.png
 
 # Table Of Contents in the Sidebar
 toc:

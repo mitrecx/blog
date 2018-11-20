@@ -2,6 +2,7 @@
 title: Linux系统程序设计2-进程控制
 date: 2018-02-14 21:37:12
 tags: Linux
+categories: Linux 
 ---
 
 # 进程概述

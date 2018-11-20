@@ -2,12 +2,11 @@
 title: jsp学习
 date: 2018-09-01 21:32:55
 tags:
-- java
-- servlet
-- jsp
+- java  
+- servlet  
+- jsp  
 categories:
-- servlet
-- java
+- jsp  
 ---
 # 1. jsp 简介
 jsp 是 sun 公司制定的一种 **服务器端动态页面技术** 规范。  

@@ -1,7 +1,7 @@
 ---
 title: ubuntu软件安装问题
 date: 2018-08-04 12:16:53
-tags:
+tags: Linux
 categories: Linux
 ---
 今天想安装一个ksh，结果报错了。  
