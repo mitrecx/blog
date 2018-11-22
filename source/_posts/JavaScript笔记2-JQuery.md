@@ -12,7 +12,7 @@ categories: JavaScript
 
 学习 jQuery 必须对上面 3 门语言有一定的了解。  
 
-为什么要学习 JavaScript：  
+为什么要学习 jQuery：  
 
 1. jQuery 是一个优秀的、**轻量级的 JS 库**。极大的简化了 JS 编程。   
 
@@ -62,9 +62,10 @@ document.getElementById("foo").innerHTML;
 **<font color=red>注：在jQuery对象中无法使用DOM对象的任何方法。</font>**    
 当然，DOM对象也无法使用jQuery对象的任何方法。    
 
+**重点：<font color=green> jQuery对象 的本质是 DOM对象 数组</font>**    
+
 **jQuery对象和DOM对象的互相转换：**  
 
-**<font color=green> jQuery对象 的本质是 DOM对象 数组</font>**  
 jquery提供了两种方法将一个jquery对象转换成一个dom对象，即 **[index]** 和 **get(index)**。    
 
 ```JavaScript
@@ -284,7 +285,29 @@ $("p").empty();
 # 4 示例
 把 input 元素（type 属性值 为 "password"）的 type 属性值改为 "text"。  
 
-jQuery 实现：  
+**jQuery 实现**：  
+```JavaScript
+<html>
+<head>
+	<script src="jquery-3.3.1.min.js"></script>
+	<script type="text/javascript">
+		function doclick(){
+			$("#password1").attr("type","text");
+
+			alert($("#password1").val());
+		}
+	</script>
+</head>
+
+<body>
+	<form>
+		<input type="password" id="password1" value="123456" />
+		<input type="button" id="button1" onclick="doclick();" value="Show default value" />
+	</form>
+</body>
+</html>
+```
+也可以写成如下形式：  
 ```JavaScript
 <html>
 <head>
@@ -307,8 +330,21 @@ jQuery 实现：
 </body>
 </html>
 ```
+**ready() 方法：** 在文档加载后激活函数。  
+当 DOM（文档对象模型） 已经加载，会发生 ready 事件。  
+ready()方法 有三种语法：  
+```JavaScript
+//语法 1
+$(document).ready(function)
+//语法 2
+$().ready(function)
+//语法 3
+$(function)
+```
+注： 语法 3 和 DOM对象转jQuery对象的语法一样 ！！！  
 
-JS 实现：
+
+**JS 实现**：
 ```JavaScript
 <html>
 <head>

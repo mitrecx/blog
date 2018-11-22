@@ -1,13 +1,13 @@
 ---
-title: about
+title: 秋风寻
 date: 2017-11-26 17:55:21
 type: "about"
 comments:
 ---
 
-## name: mitre  
+## name: Mitre  
 ## 格言：  
-多读书方能擅思辨  
+好读书 擅思辨  
   
 
 ## 说明：  

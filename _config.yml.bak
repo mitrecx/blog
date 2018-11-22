@@ -25,7 +25,6 @@ search:
 	format: html
 	limit: 10000
 	
-avatar: http://mitre.oss-cn-hangzhou.aliyuncs.com/img/vlcsnap-2018-02-22-21h01m56s237.png
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
