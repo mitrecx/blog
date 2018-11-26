@@ -111,7 +111,7 @@ select * from emp
 ```
 
 where 子句中的 **逻辑运算符** ：   
-<code> not </code>，如果原条件为真，则得到假。如果元条件为假，结果为真。  
+<code> not </code>，如果原条件为真，则得到假。如果原条件为假，结果为真。  
 <code> and </code>，如果左右两个条件都为真，则得到的值就为真。    
 <code> or </code>，  只要左右两个条件有一个为真，则得到的值就为真。  
 
@@ -138,7 +138,7 @@ where 子句中的 **模糊查询** ：
 select * from emp
  where emp_name like '%e%';
 ```
-查找 01 和 02 号部门中的所有员  
+查找 01 和 02 号部门中的所有员工  
 ```sql
 select * from emp
  where emp.department_no in ('01','02');
@@ -158,3 +158,121 @@ select * from emp
 <code> &lt;ALL </code>，小于最小  
 <code> &gt;ANY </code>，大于最小  
 <code> &lt;ANY </code>，小于最大  
+
+# 2 排序
+查表 emp，按照 工资降序 排列：  
+```sql
+select *
+  from emp
+ where salary is not null
+ order by salary desc;
+```
+结果：  
+![](https://mitre.oss-cn-hangzhou.aliyuncs.com/blog-2018-11/2018-11-22_195633.png)  
+
+查表 emp，按照 工资降序 同时 入职日期从早到晚(从小到大) 排列：  
+```sql
+select *
+  from emp
+ where salary is not null
+ order by salary desc, hire_date;
+```
+结果：  
+![](https://mitre.oss-cn-hangzhou.aliyuncs.com/blog-2018-11/2018-11-22_195810.png)  
+
+注意：  
+
+1. **order by** 必须出现在 select 中的最后一句。  
+
+2. **order by** 的排序条件是多列时，左边的排序优先级 **高于** 右边。   
+
+# 3 聚合函数(分组函数)
+聚合函数也叫分组函数。  
+## 3.1 聚合函数(分组函数)
+聚合函数(分组函数)的特点：  
+1、 **多行数据参与运算返回一行结果**。  
+2、 **主要用于统计**。  
+
+五个聚合函数：  
+1、 最值， **MAX** 和 **MIN**。可以统计任何数据类型， 包括数字，字符，日期。  
+2、 平均值， **AVG**。聚合函数会忽略空值，注意！   
+3、 求和，**SUM**  。
+4、 统计记录条数，**count**。一般用 count(1) 或 count(\*)。  
+
+示例：  
+查询员工最晚(最大)入职日期  
+```sql
+select max(hire_date)
+  from emp;
+--结果：'2018-7-3'
+```
+
+查询员工平均工资  
+```sql
+select avg(nvl(salary,0))
+  from emp;
+--结果：'11040'
+```
+查询员工个数  
+```sql
+select count(1)
+  from emp;
+--结果：'10'
+```
+
+注意：聚合函数不能直接写在 where子句中。  
+
+## 3.2 分组  
+
+查看每个部门的薪水总和：按部门 **分组**，在对组内数据使用 **聚合函数(分组函数)** ，计算之后每组返回一条数据。  
+
+```sql
+select department_no,sum(salary) sum_salary
+  from emp
+ group by department_no
+ order by sum_salary desc;
+```
+注意：  
+1. 若 <code>group by</code> 中出现多列，那么会按照这几列的 **组合值相同的数据** 看做一组。  
+2. 分组分出的小组有多少，结果集就有多少条。  
+3. 只有在 <code>group by</code> 子句中出现的字段，才能 **直接** 写在 <code>select</code> 子句中。  
+
+**分组** 常常和 **分组函数** 一起使用：  
+```sql
+--根据部门分组，计算每个部门的最高/低工资，平均工资，工资总和
+select max(salary),min(salary),avg(salary),sum(salary)
+  from emp
+ group by department_no;
+```
+<code>having</code> 为 <code>group by</code> 添加过滤条件：  
+```sql
+select department_no, count(*)
+  from emp
+ group by department_no;
+--结果：
+--	01	4
+--	02	6
+
+select department_no, count(*)
+  from emp
+ group by department_no
+having count(*)>4;
+--结果：
+--	02	6
+```
+
+# 4 提高查询效率
+
+查询语句的执行顺序：  
+
+1. from 子句。从右往左。  
+
+2. where 子句。从右往左。**将能过滤掉最大数量记录的条件写在 where 子句的最右边**。   
+
+3. group by。从左往右。**最好在 group by 之前使用 where 将不需要的记录在 group by 之前过滤掉**。    
+
+4. having。**消耗资源，尽量避免使用**。  
+
+5. select。 **尽量不要使用 星号(\*)**。  
+
+6. order by。从左往右排序。  
