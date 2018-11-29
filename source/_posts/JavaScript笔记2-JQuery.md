@@ -1,7 +1,7 @@
 ---
-title: JavaScript笔记2-JQuery
+title: JavaScript笔记2-jQuery
 date: 2018-11-19 23:29:52
-tags: ["JavaScript", "JQuery"]
+tags: ["JavaScript", "jQuery"]
 categories: JavaScript
 ---
 

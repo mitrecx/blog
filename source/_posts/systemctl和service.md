@@ -1,5 +1,5 @@
 ---
-title: systemctl和service
+title: systemctl 和 service
 date: 2018-11-23 15:59:01
 tags: ["Linux","Ubuntu"]
 categories: Linux
@@ -78,17 +78,17 @@ NAME 是 服务名。
 systemctl status ssh
 
 #打开服务
-sudo systemctl start ssh
+systemctl start ssh
 #关闭服务
-sudo systemctl stop ssh
+systemctl stop ssh
 #重启服务
-sudo systemctl restart ssh
+systemctl restart ssh
 #不中断正常功能下重新加载服务
-sudo systemctl reload ssh
+systemctl reload ssh
 #设置服务的开机自启动
-sudo systemctl enable ssh
+systemctl enable ssh
 #关闭服务的开机自启动
-sudo systemctl disable ssh
+systemctl disable ssh
 
 #查看活跃的单元
 systemctl list-units

@@ -10,7 +10,11 @@ categories: 数据库
 字符串类型的数据可依 **编码方式** 分成 **数据库字符集**（CHAR/VARCHAR2/CLOB/LONG)和 **国际字符集**(NCHAR/NVARCHAR2/NCLOB)两种。  
 数据库中的字符串数据都通过字符集将字符转换为二进制，才存储到数据块中。  
 通过不同的编码集转换，即便是相同的字符，也可能会转换成不同的二进制编码。这也是产生乱码的原因。  
-数据库的编码格式一般是在创建数据库时指定的。当然也可以修改数据库的编码。  
+数据库的编码格式一般是在创建数据库时指定的。也可以在数据库建立之后修改其编码。  
+```sql
+--字符集查询
+select userenv('language') from dual;
+```
 
 字符串类型 依据 **存储方式** 分为 **固定长度类型**（CHAR/NCHAR) 和 **可变长度类型**（VARCHAR2/NVARCHAR2)两种.
 
@@ -63,7 +67,7 @@ select rtrim('   mitre  cx   ') from dual;
 select trim('e' from 'eeemitre  eeecxee') from dual;
 ```
 
-**instr** 字符查找函数，查找到指定字符串，返回指定子串的下标(注意从1开始)，未找到返回0。  
+**instr** (index string的缩写) 字符查找函数，查找到指定字符串，返回指定子串的下标(注意从1开始)，未找到返回0。  
 
 格式一：instr(源字符串, 目标字符串)    
 格式二： instr(源字符串, 目标字符串[, 起始位置[, 匹配序号]])  
@@ -82,7 +86,7 @@ select instr('helloworld','o',1,2) from dual;
 lpad 在 字符串的左边补位。  
 rpad 在 字符串的右边补位。  
 ```sql
-select  lpad('world',13,'hello ') from dual;  
+select  lpad('world',13,'000 ') from dual;  
 --结果：'000 000 world'
 --在 'world' 的左边补位 '000 ', 补满 13位
 
@@ -204,6 +208,6 @@ select add_months(sysdate,-5) from dual t; --结果：'2018/6/22 11:09:36'
 
 --下个星期一的日期
 select next_day(SYSDATE,2) from dual --结果：'2018/11/26 11:11:50'
--- 1  2  3  4  5  6  7 
+-- 1  2  3  4  5  6  7
 --日 一 二 三 四 五 六
 ```  
