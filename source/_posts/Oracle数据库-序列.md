@@ -10,7 +10,7 @@ categories: 数据库
 # 创建序列 sequence  
 
 ```sql
-CREATE SEQUENCE 序列名;
+CREATE SEQUENCE 序列名
 
 　　[INCREMENT BY n]
 

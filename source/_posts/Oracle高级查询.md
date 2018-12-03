@@ -85,7 +85,7 @@ select * from (
 
 **DECODE函数 的作用和 java 中的 switch-case 一样**。  
 
-计算员工的奖金：如果部门号为 01，奖金为 [薪水*2]。如果部门号为 02，奖金为 [薪水*10]。其他部门，奖金额等于薪水值。  
+计算员工的奖金：如果部门号为 01，奖金为 [薪水\*2]。如果部门号为 02，奖金为 [薪水\*10]。其他部门，奖金额等于薪水值。  
 ```sql
 select emp.*,decode(department_no,
                                  '01',salary*2,
@@ -104,6 +104,16 @@ select emp.*,
          else salary end
        bonus
 from emp;
+
+--
+select app.*,
+  case
+    when app.channel_type='01' then '网上银行'
+    when app.channel_type='02' then '手机银行'
+    else '其他渠道'
+  end
+  渠道
+from loan_app_info app
 ```
 **DECODE 与CASE WHEN 的比较:**  
 1. DECODE 只有Oracle 才有，其它数据库不支持。  
@@ -117,7 +127,7 @@ CASE when可用于 =，>=，<，<=，<>，is null，is not null 等的判断。
 
 <h1 id='head3'>3 排序函数</h1>
 
-## 3.1 组外排序
+## 3.1 普通排序
 对 emp表 按工资排序：  
 ```sql
 select e.*, rownum as 序号

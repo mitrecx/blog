@@ -401,6 +401,3 @@ web.xml
 
 程序运行结果：  
 ![](https://mitre.oss-cn-hangzhou.aliyuncs.com/blog-2018-11/2018-11-29_085332.png)    
-
-
-u0102 2:53
