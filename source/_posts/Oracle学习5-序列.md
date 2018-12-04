@@ -1,6 +1,6 @@
 ---
-title: Oracle数据库-序列
-date: 2018-11-12 19:54:32
+title: Oracle-学习5-序列
+date: 2018-11-26 19:54:32
 tags:
 - 数据库
 - Oracle

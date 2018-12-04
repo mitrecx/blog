@@ -1,6 +1,6 @@
 ---
 title: Oracle问题引发的思考
-date: 2018-10-22 15:33:18
+date: 2018-11-05 15:33:18
 tags:
 - Oracle
 - 数据库
@@ -38,3 +38,5 @@ from emp e
 where not exists ( select 1 from emp_history eh
                      where eh.id=e.id );
 ```
+思考：  
+Oracle 你真的熟稔于心了哇？  

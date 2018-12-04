@@ -1,6 +1,6 @@
 ---
-title: Oracle SQL语言基础
-date: 2018-11-22 11:18:15
+title: Oracle-学习1-SQL语言基础
+date: 2018-11-06 11:18:15
 tags: ["Oracle","数据库"]
 categories: 数据库
 ---

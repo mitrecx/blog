@@ -495,7 +495,7 @@ decodeURI()	//解码某个编码的 URI。
 
 **外部对象就是 浏览器对象模型 ( Browser Object Model, BOM )。**  
 
-![](https://mitre.oss-cn-hangzhou.aliyuncs.com/blog-2018-11/2018-11-18_100841.png)  
+![](https://mitre.oss-cn-hangzhou.aliyuncs.com/blog-2018-12/2018-11-18_100841.png)  
 
 
 BOM 是 浏览器提供的一套 API。它使 JS 有了操作浏览器窗口的能力。  
@@ -505,7 +505,7 @@ BOM 是 浏览器提供的一套 API。它使 JS 有了操作浏览器窗口的�
 ## 2.1 浏览器对象模型 BOM
 
 window 对象的方法和属性 都可以省略 **<font color=red>window.</font>** 前缀。  
-比如，**window.alert(str)** 可以 写成 **alert(str)** 。  
+比如，**<font color=red>window.</font>alert(str)** 可以 写成 **alert(str)** 。  
 
 window对象的方法：  
 
@@ -607,9 +607,7 @@ setAttribute()
 removeAttribute()  
 
 节点的样式：  
-className， 类选择器封装的类型  
-style  
-
+className， **类选择器** 封装的类型 style   
 ```JavaScript
 //<p id="t1"> hello world.</p>
 vat t = document.getElementById("t1");
@@ -667,7 +665,7 @@ function Student(name,age){
 var s=new Student("小艾",20);
 ```
 
-3、 **<font color=red>使用 JSON 创建</font>**  
+3、 **<font color=red>使用 JSON(JavaScript Object Notation, JS对象标记) 创建</font>**  
 ```JavaScript
 // 创建一个 programmer对象
 var programmer={
