@@ -54,21 +54,27 @@ comment on table emp
 is '员工表';
 ```
 两种形式的外键约束：   
-1、普通外键约束（如果存在子表引用父表主键，则无法删除父表记录）  
-2、级联外键约束（可删除存在引用的父表记录，而且同时把所有有引用的子表记录也删除）
+1、普通外键约束（如果存在A表引用B表主键，则无法删除B表中被引用记录）  
+2、级联外键约束（可以删除B表中被引用的记录，但是同时会把对应的A表中的记录也删除）
 
 创建结果：  
 ```sql
-select tabs.table_name "表名", comments.comments, obj.created "表创建时间", obj.last_ddl_time "表修改时间"
-from user_tables tabs left join user_tab_comments comments on(comments.TABLE_NAME=tabs.table_name)
-left join user_objects obj on(tabs.table_name=obj.object_name)
-order by obj.last_ddl_time desc;
+select ut.table_name "表名", utc.comments, uo.created "表创建时间", uo.last_ddl_time "表修改时间"
+from user_tables ut left join user_tab_comments utc on(utc.TABLE_NAME=ut.table_name)
+left join user_objects uo on(ut.table_name=uo.object_name)
+order by uo.last_ddl_time desc;
 ```
 ![](https://mitre.oss-cn-hangzhou.aliyuncs.com/blog-2018-11/2018-11-22_151125.png)  
 
 # 1 where 子句
 
-在 Oracle ，任何值 **<font color=red>都不能 "=NULL"</font>** ，只能用 "is NULL" 或 "is NOT NULL"。  
+在 Oracle ， **<font color=red>where子句中 不能用 "=NULL"</font>** ，只能用 "is NULL" 或 "is NOT NULL"。  
+但是，更新表时，**set子句 可以用 "=null"**，例如：  
+```sql
+update emp
+set salary=null
+where salary = 0.00;
+```
 
 空值函数 NAV 和 NVL2 ：  
 nvl(str, replace_with) , 若 str 为空，则取 replace_with 的值。否则不变。   

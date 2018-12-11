@@ -7,7 +7,7 @@ categories: 数据库
 
 # 1 Oracle 字符串类型
 
-字符串类型的数据可依 **编码方式** 分成 **数据库字符集**（CHAR/VARCHAR2/CLOB/LONG)和 **国际字符集**(NCHAR/NVARCHAR2/NCLOB)两种。  
+字符串类型的数据可依 **编码方式** 分成 **数据库字符集** (CHAR/VARCHAR2/CLOB/LONG)和 **国际字符集(以 <font color=red>N</font> 开头)** (NCHAR/NVARCHAR2/NCLOB)两种。  
 数据库中的字符串数据都通过字符集将字符转换为二进制，才存储到数据块中。  
 通过不同的编码集转换，即便是相同的字符，也可能会转换成不同的二进制编码。这也是产生乱码的原因。  
 数据库的编码格式一般是在创建数据库时指定的。也可以在数据库建立之后修改其编码。  
@@ -18,15 +18,15 @@ select userenv('language') from dual;
 
 字符串类型 依据 **存储方式** 分为 **固定长度类型**（CHAR/NCHAR) 和 **可变长度类型**（VARCHAR2/NVARCHAR2)两种.
 
-1. 固定长度：是指虽然输入的字段值小于该字段的限制长度，但是实际存储数据时，会先自动向右补足空格后，才将字段值的内容存储到数据块中。(浪费空间，但是存储效率较可变长度类型要好)  
+1. **<font color=red>固定长度</font>** ：是指虽然输入的字段值小于该字段的限制长度，但是实际存储数据时，会先自动 **在右端补足空格** 后，才将字段值的内容存储到数据块中。(浪费空间，但是存储效率较可变长度类型要好)  
 例：char的长度是固定的，比如，定义了char(20),即使插入abc，不足二十个字节，数据库也会在abc后面自动加上17个空格，以补足二十个字节。  
 
-2. 可变长度：当输入的字段值小于该字段的限制长度时，直接将字段值的内容存储到数据块中，而不会补上空白。(节省数据块空间)  
+2. **<font color=red>可变长度</font>**：当输入的字段值小于该字段的限制长度时，直接将字段值的内容存储到数据块中，而不会补上空格。(节省数据块空间)  
 
 
 Oracle 字符串类型：    
 1. char(size) / nchar(size) ：定长，字节/字符。最长2000字节。  
-2. varchar(size) / **varchar2(size)** ：不定长（变长），字节。最长4000字节。  
+2. varchar(size) / **<font color=red>varchar2(size)</font>** ：不定长（变长），字节。最长4000字节。  
 3. nvarchar(size) / nvarchar2(size) ：不定长，字符  
 4. long 和 clob ：不定长。long 2GB，clob 4 GB。  
 
@@ -137,7 +137,7 @@ select to_date('2018-11-22','yyyy-mm-dd') from dual;
 
 ## 3.2 时间的操作
 
-在介绍时间操作前，先了解 3 个函数：  
+**在介绍时间操作前，先了解 3 个函数**：  
 1. round(num [,decimal_scale]) 函数: 四舍五入。     
 2. floor(num) 函数 : 地板，取小于等于数值 num 的最大整数。  
 3. ceil(num) 函数 ：天花板，取大于等于数值 num 的最小整数。  
@@ -154,7 +154,7 @@ select floor(-1.2) from dual; -- '-2'
 select ceil(-1.2) from dual; -- '-1'
 ```
 
-**计算时间差：时间相减**   
+**计算时间差：<font color=red>时间相减</font>**   
 ```sql
 --两个日期间的天数
 select sysdate - to_date('2018-10-23','yyyy-mm-dd') from dual; -- '30.4204282407407'
@@ -210,4 +210,17 @@ select add_months(sysdate,-5) from dual t; --结果：'2018/6/22 11:09:36'
 select next_day(SYSDATE,2) from dual --结果：'2018/11/26 11:11:50'
 -- 1  2  3  4  5  6  7
 --日 一 二 三 四 五 六
+
+ --减1月
+select sysdate, add_months(sysdate,-1) from dual;        
+ --减 1星期 
+select sysdate, to_char(sysdate-7,'yyyy-mm-dd HH24:MI:SS') from dual; 
+ --加 1天 
+select sysdate, to_char(sysdate+1,'yyyy-mm-dd HH24:MI:SS') from dual; 
+--减1小时 
+select sysdate, to_char(sysdate-1/24,'yyyy-mm-dd HH24:MI:SS') from dual; 
+--减1分钟 
+select sysdate, to_char(sysdate-1/24/60,'yyyy-mm-dd HH24:MI:SS') from dual; 
+--减1秒
+select sysdate, to_char(sysdate-1/24/60/60,'yyyy-mm-dd HH24:MI:SS') from dual; 
 ```  
