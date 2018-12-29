@@ -9,18 +9,25 @@ categories: 远程桌面
 ---
 # 远程桌面Ubuntu
 Linux 有 ssh ，Windows 有 Xshell ，那么还要远程桌面干嘛？？  
-**ssh 虽然强大**，但是在安装 Oracle Weblogic Server 的时候，ssh 将束手无策。  
-有了图形桌面，在服务端安装 Weblogic 将易如反掌。  
+**ssh隧道 虽然强大**，但是在安装 Oracle Weblogic Server/Oracle数据库 的时候，ssh 将束手无策。  
+有了图形桌面，在服务端安装 Oracle产品 将易如反掌。  
 
 
 ## 1. 服务端(Ubuntu)
-不论是 Windows 还是 Linux 远程连接 Ubuntu 都需要在远程服务端安装 **桌面环境** 。
+不论是 Windows 还是 Linux 远程连接 Ubuntu 都需要在远程服务端安装 **桌面环境** 。  
 
-在Ubuntu上安装桌面环境：
+### 1.1 xrdp
+[xrdp](http://www.xrdp.org/): An open source **<font color=red>remote desktop protocol(rdp)</font>** server.   
+xrdp uses **the remote desktop protocol** to present a **GUI(Graphical User Interface)** to the user.  
+
+### 1.2 在Ubuntu上安装桌面环境  
 ```sh
 # 安装xrdp
 sudo apt-get install xrdp
-
+```
+仅仅安装 xrdp 协议，还不能在windows上使用 远程桌面 连接到Ubuntu。  
+还要安装vncServer才行：  
+```sh
 # 安装vnc4server
 sudo apt-get install vnc4server
 

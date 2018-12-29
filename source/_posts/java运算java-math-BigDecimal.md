@@ -4,6 +4,15 @@ date: 2018-10-31 10:38:51
 tags: java
 categories: java
 ---
+**空值可以强转为 BigDecimal 类型** ：   
+```java
+Object a=null;
+BigDecimal b=(BigDecimal)a;
+//b=null
+```
+**<font color=red>调用b时，注意非空判断。</font>**   
+
+-----
 
 BigDecimal常用的构造方法：  
 ```java
