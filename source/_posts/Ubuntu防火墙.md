@@ -27,17 +27,17 @@ DESCRIPTION
 ## 2.2 ufw 常用操作
 
 1、   
-**<font color=red>ufw [--dry-run] enable|disable|reload</font>**  打开|关闭|重启 防火墙  
+**<font color=green>ufw [--dry-run] enable|disable|reload</font>**  打开|关闭|重启 防火墙  
 **--dry-run**  试运行，显示结果并不执行  
 
 2、   
-**<font color=red>ufw [--dry-run] status [verbose|numbered]</font>** 查看状态  
+**<font color=green>ufw [--dry-run] status [verbose|numbered]</font>** 查看状态  
 
 3、   
 ufw supports connection rate limiting, which is useful for **protecting  against  brute-force  login  attacks**.  
 When a limit rule is used, ufw will normally allow the connection but will deny connections if an IP address attempts to initiate **6 or more connections within 30 seconds**.  
 Typical usage is:
-**<font color=red>ufw limit ssh/tcp</font>**  
+**<font color=green>ufw limit ssh/tcp</font>**  
 如果同一个IP地址在30秒之内进行了6次及6次以上的连接，ufw将阻止 (deny) 该连接  
 
 更多操作参考:  

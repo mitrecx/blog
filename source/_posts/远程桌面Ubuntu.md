@@ -16,9 +16,11 @@ Linux 有 ssh ，Windows 有 Xshell ，那么还要远程桌面干嘛？？
 ## 1. 服务端(Ubuntu)
 不论是 Windows 还是 Linux 远程连接 Ubuntu 都需要在远程服务端安装 **桌面环境** 。  
 
-### 1.1 xrdp
+### 1.1 xrdp 和 vnc
 [xrdp](http://www.xrdp.org/): An open source **<font color=red>remote desktop protocol(rdp)</font>** server.   
-xrdp uses **the remote desktop protocol** to present a **GUI(Graphical User Interface)** to the user.  
+xrdp uses **the remote desktop protocol** to present a **GUI(Graphical User Interface)** to the user.   
+
+[vnc](https://en.wikipedia.org/wiki/Virtual_Network_Computing) 是一种 **图形桌面共享系统**(graphical desktop sharing system)。它利用 RFB协议(Remote Frame Buffer protocol) 来远程控制另一台计算机。  
 
 ### 1.2 在Ubuntu上安装桌面环境  
 ```sh
@@ -26,7 +28,7 @@ xrdp uses **the remote desktop protocol** to present a **GUI(Graphical User Inte
 sudo apt-get install xrdp
 ```
 仅仅安装 xrdp 协议，还不能在windows上使用 远程桌面 连接到Ubuntu。  
-还要安装vncServer才行：  
+还要安装vnc4Server才行：  
 ```sh
 # 安装vnc4server
 sudo apt-get install vnc4server
@@ -37,6 +39,7 @@ sudo apt-get install xubuntu-desktop
 # 向xsession中写入xfce4-session(每个用户需要单独运行)
 echo "xfce4-session" >~/.xsession
 ```
+
 
 开启xrdp服务
 ```sh

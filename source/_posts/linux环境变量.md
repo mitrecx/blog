@@ -50,7 +50,7 @@ export my_variable
 unset my_variable
 ```
 **<font color=red>以上设置的环境变量都是临时的，一旦重启电脑，就会失效。</font>**  
-**设置永久环境变量需要在[登录shell](#title2-2-1)中设置。另参见[环境变量的持久化](#title2-3)**  
+**设置永久环境变量需要在 [登录shell](#title2-2-1) 中设置。另参见 [环境变量的持久化](#title2-3)**  
 
 注意：  
 在子shell中修改全局变量的值，只在子shell中有效，在全局中，全局变量不会被改变。  
@@ -99,7 +99,8 @@ $HOME目录下的启动文件
 系统执行的shell脚本就是这种shell。就是脚本---没有CLI提示符。脚本用到的变量都是从父shell继承来的。  
 
 
-<h2 id="title2-3" 2.3 环境变量持久化</h2>
+<h2 id="title2-3"> 2.3 环境变量持久化 </h2>
+
 把环境变量放在文件中，虽然可以放在 **<font color=red>/etc/profile</font>** 中。但是这样不规范。  
 
 我们应该在 **/etc/profile.d** 中建立 **.sh** 文件，把自己设置的全局环境变量放在里面即可。  
@@ -120,7 +121,7 @@ setenv PATH ${PATH}:/usr/lib/jvm/java-8-oracle/bin:/usr/lib/jvm/java-8-oracle/db
 setenv JAVA_HOME /usr/lib/jvm/java-8-oracle
 setenv DERBY_HOME /usr/lib/jvm/java-8-oracle/db
 ```
-注：setenv 是 c shell 中的命令，作用和 export 一样。
+注：<code>setenv</code> 是 **c shell** 中的命令，作用和 **bash** 中的 export 一样。
 
 # 3 数组变量
 ```bash
