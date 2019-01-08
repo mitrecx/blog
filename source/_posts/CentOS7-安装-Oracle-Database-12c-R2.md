@@ -77,8 +77,8 @@ init 5
 ![](https://mitre.oss-cn-hangzhou.aliyuncs.com/blog-2018-12/2019-01-04_090238.png)  
 
 注：  
-虽然 Oracle 数据库支持 silent 安装，没有图形桌面也能安装。  
-但考虑到 silent 安装 配置 rsp 文件繁琐，  
+虽然 Oracle 数据库支持 silent 安装(没有图形桌面也能安装)，  
+但考虑到 silent 安装 配置 rsp 文件有些繁琐，  
 不如 先安装图形桌面，然后直接安装 Oracle数据库，比较方便。  
 
 ## 2.2 安装 Oracle 数据库
@@ -232,7 +232,8 @@ export ORACLE_HOSTNAME=ol7-122.localdomain
 export ORACLE_UNQNAME=cdb1
 export ORACLE_BASE=/u01/app/oracle
 export ORACLE_HOME=\$ORACLE_BASE/product/12.2.0.1/db_1
-export ORACLE_SID=cdb1
+# export ORACLE_SID=cdb1
+export ORACLE_SID=orcl
 
 export PATH=/usr/sbin:/usr/local/bin:\$PATH
 export PATH=\$ORACLE_HOME/bin:\$PATH
@@ -289,9 +290,18 @@ init 5
 
 接下来会出现一个 Oracle 安装窗口，**<font color=red>建议每次点击next之前，阅读清楚选项的意义。</font>**    
 
+安装完成后，检查一下环境变量 **<font color=red>$ORACLE_SID</font>**：  
+```sh
+#多数环境变量在 /home/oracle/scripts/setEnv.sh 文件中设置
+env | grep -i oracle
+
+# /etc/oratab中的 sid 一定要和 $ORACLE_SID 一致
+vim /etc/oratab
+```
+
 
 # 3 建库
-终端执行：  
+终端执行(需要图形桌面环境)：  
 ```sh
 dbca
 ```
@@ -300,42 +310,52 @@ dbca
 # 4 登录
 
 ## 4.1 登录配置
-配置 listener.ora  :   
+
+**listener.ora 和 tnsnames.ora 配置 的 实例名(或服务名) 应该和 $ORACLE_SID 一致**。  
+
+配置 listener.ora  [ [listener.ora文件介绍](https://docs.oracle.com/cd/B28359_01/network.111/b28317/listener.htm#NETRF008) ]:   
 ```sh
 vim /u01/app/oracle/product/12.2.0.1/db_1/network/admin/listener.ora
+
+#或者
+vim $ORACLE_HOME/network/admin/listener.ora
+```
+内容如下：   
+```
+LISTENER =
+  (DESCRIPTION_LIST =
+    (DESCRIPTION =
+      (ADDRESS = (PROTOCOL = TCP)(HOST = mitre)(PORT = 1521))
+    )
+  )
+
+ADR_BASE_LISTENER = /u01/app/oracle
+
+SID_LIST_LISTENER =
+  (SID_LIST =
+    (SID_DESC =
+      (GLOBAL_DBNAME = orcl)
+        (SID_NAME = orcl)
+    )
+  )
+```
+配置 tnsnames.ora  [ [tnsnames.ora文件介绍](https://docs.oracle.com/cd/B28359_01/network.111/b28317/tnsnames.htm#NETRF007) ]:  
+```sh
+vim $ORACLE_HOME/network/admin/tnsnames.ora
 ```
 内容如下：  
 ```
-ORACLR_CONNECTION_DATA =
-  (DESCRIPTION =
-    (ADDRESS_LIST =
-      (ADDRESS = (PROTOCOL = IPC)(KEY = EXTPROC1521))
-    )
-    (CONNECT_DATA =
-      (SID = CLRExtProc)
-      (PRESENTATION = RO)
-    )
-  )
-
 ORCL =
   (DESCRIPTION =
-    (ADDRESS = (PROTOCOL = TCP)(HOST = localhost)(PORT = 1521))
+    (ADDRESS_LIST =
+      (ADDRESS = (PROTOCOL = TCP)(HOST = mitre)(PORT = 1521))
+    )
     (CONNECT_DATA =
-      (SERVER = DEDICATED)
       (SERVICE_NAME = orcl)
     )
   )
-
-<span style="color:#ff0000;">192.168.11.201 =
-  (DESCRIPTION =
-    (ADDRESS_LIST =
-      (ADDRESS = (PROTOCOL = TCP)(HOST = 192.168.11.201)(PORT = 1521))
-    )
-    (CONNECT_DATA =
-      (SERVICE_NAME = orcl)
-    )
-  )</span>
 ```
+
 
 查看 数据库的 **监听器** 状态：  
 ```sh
@@ -345,13 +365,30 @@ lsnrctl start #打开监听器
 lsnrctl stop #关闭
 ```
 
-## 4.2 sqlplus 登录方法：  
+
+## 4.2 启动数据库 与 sqlplus 登录方法
+启动数据库：  
+```sh
+# 打开 sqlplus
+sqlplus / as sysdba
+## 打开成功会 弹出 SQL> 提示符
+
+# 启动数据库
+startup
+
+# 用户登录
+# conn 用户名/密码
+conn system/123
+```
+![](https://mitre.oss-cn-hangzhou.aliyuncs.com/blog-2018-12/2019-01-04_153831.png)  
+
+在数据库启动的情况下，可以直接在 shell 终端进行 用户登录 ：  
 <code> sqlplus 用户名/密码@ip:port/SID </code>  
 ```sh
 sqlplus system/123@localhost:1521/orcl
 ```
 
-## 4.3 远程登录
+## 4.3 利用 PL/SQL 远程登录
 Chrome 打开 华为云主机控制台，添加 **安全组-入规则** ，添加 1521 端口。  
 安装 Oracle client 和 PL/SQL。  
 登录结果：  
