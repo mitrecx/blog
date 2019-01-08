@@ -33,7 +33,7 @@ iconv -f gbk -t utf-8 test.txt > target.txt
 -f from-encoding 表示 原编码格式；  
 -t to-encoding 表示 目的编码格式
 
-target.txt 文件内容 中文正常。  
+**<font color=green>target.txt 文件内容 显示中文正常</font>**。  
 
 ## 2.2 解决方式二(无效)
 修改 Win10 系统编码方式为 UTF-8：  
