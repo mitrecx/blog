@@ -84,7 +84,7 @@ public static void main(String[] args) {
   String regex1="re";
   Pattern p=Pattern.compile(regex1);
   Matcher m1=p.matcher(str1);
-  while(m1.find()) {
+  if(m1.find()) {
     System.out.println("m1.start: "+m1.start());
     System.out.println("m1.end: "+m1.end());
     System.out.println("m1.group(): "+m1.group());

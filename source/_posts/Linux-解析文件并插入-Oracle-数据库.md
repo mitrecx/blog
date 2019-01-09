@@ -33,7 +33,7 @@ GRADE    NUMBER(2)    Y
 ```
 
 # 2 实现
-tinsert.sh  
+tinsert.sh 文件：    
 ```sh
 #!/bin/bash
 ./tparse.sh;
@@ -48,7 +48,7 @@ if [[ $? -eq 0 ]]; then
 fi
 ```
 
-tparse.sh  
+tparse.sh 文件：   
 ```sh
 #!/bin/bash
 iconv -f gbk -t utf-8 batch.dat > tbatch.dat;
@@ -77,6 +77,11 @@ cat sql.txt > sql2.txt
 # 去除Windows中的换行符 ^M
 # cat -A sql.txt | sed 's/\^M//g' > sql2.txt
 # sed -i 's/\$//g' sql2.txt
+```
+
+执行：  
+```sh
+./tinsert.sh
 ```
 
 Windows 打开 PLSQL 连接 远程数据库，查询插入结果：  
