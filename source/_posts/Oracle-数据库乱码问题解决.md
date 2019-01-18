@@ -71,9 +71,9 @@ export NLS_LANG='SIMPLIFIED CHINESE_CHINA.UTF8'
 # 3 总结
 
 数据库出现乱码时，应该逐一检查下列信息：   
-1. 客户端操作系统字符集：**locale**      
-2. 客户端操作系统 环境变量： **NLS_LANG**   
-3. 服务端数据库字符集：**select userenv('language') from dual**    
+1. 服务端数据库字符集：**select userenv('language') from dual**    
+2. 客户端操作系统字符集：**locale**      
+3. 客户端操作系统 环境变量： **NLS_LANG**   
 
 应该将 三者 的字符集统一。  
 

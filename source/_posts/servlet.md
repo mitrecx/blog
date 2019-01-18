@@ -7,7 +7,7 @@ tags:
 categories: servlet
 ---
 # 1. 什么是servlet ？  
-sun公司制定的一种用来**扩展web服务器功能** 的 **组件规范**。  
+sun公司制定的一种用来**扩展web服务器功能** 的 **组件 (规范)**。  
 （1）扩展web服务器功能  
 &nbsp;&nbsp;&nbsp;web服务器只能处理静态资源的请求（即事先需要把HTML文件准备好），可以使用servlet来扩展，即web服务器可以通过调用servlet来处理动态资源的请求，比如访问数据库。    
 （2）组件规范  
@@ -17,17 +17,17 @@ sun公司制定的一种用来**扩展web服务器功能** 的 **组件规范**�
 
 # 2. 如何写一个servlet  
 不利用开发工具，纯手写一个servlet：  
-1. 写一个java类，继承Servlet接口或者**继承HttpServlet抽象类**。  
+1. 写一个java类，实现 Servlet接口 或者 **继承 HttpServlet抽象类** 。  
 2. 编译
 3. 打包（变成一个组件）  
 创建具有如下结构的文件夹：  
 APPname/（应用名）  
- &nbsp;&nbsp; WEB-INFO/  
+ &nbsp;&nbsp; WEB-INF/  
  &nbsp;&nbsp;&nbsp;&nbsp; classes/  
  &nbsp;&nbsp;&nbsp;&nbsp; lib/  (可选，放jar文件)  
  &nbsp;&nbsp;&nbsp;&nbsp; **web.xml** (**部署描述文件**)
 4. 部署  
-将第3步创建好的整个文件夹拷贝到servlet容器的相应的位置。  
+将第3步创建好的整个文件夹添加到 Tomcat容器里。  
 <font color=red>注</font>： 可以使用 **jar** 命令将第3步创建好的整个文件夹压缩成 **".war"** 的文件，然后拷贝。  
 5. 启动容器，访问servlet  
 http://ip:port/APPname/url-pattern  
@@ -51,17 +51,16 @@ step6.&nbsp; 浏览器解析相应数据包，生成相应的页面。
 ## 4.1 web.xml 配置请求资源路径
 容器如何处理请求资源路径：  
 在浏览器地址栏输入 http://ip:port/web_App_name/hello.html  
-容器根据 **应用名** 找到 应用所在的目录  
-容器默认调用一个servlet，去 web.xml 中查找有没有一个和"/hello.html" 匹配的servlet。具体调用按下列顺序：  
+容器根据 **应用名** 找到 应用所在的目录，并去 web.xml文件 中查找有没有一个和"/hello.html" 匹配的servlet。具体调用按下列顺序：  
 1. 如果 web.xml 中有，就调用此servlet。   
 2. 如果 web.xml 中没有，就调用 WebContent(应用主目录) 目录 下的 对应的"/hello.html" 文件。  
 3. 如果 Webcontent 目录下也没有资源文件， 将会报 404 。  
 
 web.xml 中配置 <url-pattern\> </url-pattern\> 有三种匹配方式：  
-1、 精确匹配  
+1、 **精确匹配**  
 <url-pattern\> /hello.html </url-pattern\>  
 
-2、 通配符匹配  
+2、 **通配符匹配**  
 <url-pattern\> /\* </url-pattern\>  
 使用 " **\*** " 匹配 0 或 多个 字符  
 
@@ -85,26 +84,31 @@ http://localhost:8080/TestTomcat/bmi<font color=red>?weight=60&height=1.9</font>
 
 # 5. 字符集编码问题
 
-servlet 输出中文为什么会有乱码？  
-out.println 方法在默认情况下，会使用"iso-8859-1"来编码  
+## servlet 输出中文有乱码   
+response.getWriter().println 方法在默认情况下，会使用"iso-8859-1"来编码，而 "iso-8859-1" 编码不支持中文。  
 
-解决：  
+解决，把响应输出编码方式 设置为 utf-8 ：  
+```java
 response.setContentType("text/html;charset=utf-8")  
-<font color=red>注</font>：先设置编码，后获取输出流 response.getWriter()  
+```
+<font color=red>注意顺序</font>：先设置编码，后获取输出流 response.getWriter()。  
 
-表单包含中文参数值 出现乱码：  
-**原因**：  表单提交时，browser会对表单中的值进行编码（用页面的编码方式），服务端解码时，默认用 iso-8859-1 来解码  
-**解决**：
-1. 在HTML 的 <head\> 中加个<meta> 标签，指定表单提交时的编码方式     
-<meta http-equiv="content-type" content="text/html; charset=utf-8"\>   
-2. 服务端使用相同的 **字符集** 解码  
+## 表单中包含中文参数值 引起乱码
+原因：  **表单** 提交时，browser会对表单中的值进行编码（用页面的编码方式），服务端解码时，默认用 iso-8859-1 来解码。  
+解决，把页面字符集设置为 utf-8 同时 把服务端解码方式 设置为 utf-8 ：   
+1、 在HTML 的 &lt;head&gt; 中加个&lt;meta&gt; 标签，指定表单提交时的编码方式：  
+```html     
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+```
+2、 服务端 <code>request.getParameter()</code> 必须使用相同的 **字符集** 解码:    
 ```java
 request.setCharacterEncoding("utf-8");  
 ```
-
+该指定只对 **POST请求** 有效，对 **GET请求** 无效 (GET方法提交表单是，提交的内容在URL中，一开始就已经按照编码分析提交内容，所以 setCharacterEncoding() 对 GET 无效)。  
+<font color=red>注意顺序</font>：先设置编码，后获取 参数 request.getParameter()。   
 # 6. 转发  
 1、 转发：  
-一个 **web 组件 (servlet/jsp)** 将为完成的处理交个另外一个 **web 组件** 继续做。  
+一个 **web 组件 (servlet/jsp)** 将 未完成的处理交个另外一个 **web 组件** 继续做。  
 比如，一个 servlet 将处理结果 转发 给一个 jsp 来展现。  
 
 2、 如何转发：  
@@ -151,30 +155,40 @@ rd.forward(request, response);
 2、 交个容器处理  
 将异常抛给容器，  throw new ServletException(e)  
 在 web.xml 中配置异常处理页面，**<error-page>**  
-编写异常处理异常  
+编写异常处理页面  
 
 通常， **系统异常** (如，数据库连接断了)交给容器处理。   
 **应用异常** (如，登录密码错误)一般使用转发来处理。  
 
 # 8. 路径问题  
 
-1. 超链接:  
-<a href="delete.do"\>删除<a\>  
-2. 表单提交:  
-<form action="add.do"\>  
-3. 重定向:  
-response.sendRedirect("list.do");  
-4. 转发：  
-request.getRequestDispatcher("listEmp.jsp");   
+1、 超链接:  
+```html
+<a href="delete.do">删除<a>
+```
+2、 表单提交:  
+```html
+<form action="add.do">
+```
 
-绝对路径： 以 “/”  开头  
-**超链接、表单提交、重定向** 从应用名开始写。   
-**转发** 从应用名之后开始写。  
+3、 重定向:  
+```java
+response.sendRedirect("list.do");
+```
+4、 转发：  
+```java
+request.getRequestDispatcher("listEmp.jsp");
+```
+
+**<font color=green>绝对路径</font>**： 以 “/”  开头。  
+**超链接、表单提交、重定向** 写绝对路径时： 从 **<font color=red>应用名</font>** 开始写。   
+**转发** 写绝对路径时： 从 **<font color=red>应用名之后</font>** 开始写。  
 
 硬编码：路径写死，如：/webApp/jsp/hello.jsp  
-注意：  不要把 **应用名** 直接写在路径里，应该使用下面的方法获取部署时的应用名：
+注意：  不要把 **应用名** 直接写在路径里！   
+应该使用下面的方法获取部署时的应用名：
 ```java
 String rootDir = request.getContextPath()  
 ```
 
-相对路径： 不以 “/” 开头  
+**<font color=green>相对路径</font>**： 不以 “/” 开头。  

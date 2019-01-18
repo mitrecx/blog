@@ -68,7 +68,7 @@ ps -ef | grep "weblogic.Server" | awk '{print $2}' | kill -9
 ```sh
 # 以下命令可以正常执行
 ps -ef | grep "weblogic.Server" | awk '{print $2}' | xargs -I {} kill -9 {}
-```  
+```
 
 # 2 xargs 常用选项
 ##  -I 选项 (小写的 i)
@@ -87,7 +87,7 @@ tail  -2  1.txt | xargs -I{} touch {}.txt
 ```
 ## -p 选项
 p 的含义 是 prompt 。  
-执行命令前会输出 命令，并需要确认才能执行(y执行，其他不执行)。  
+执行命令前会输出 命令，并需要确认才能执行(输入y执行，输入其他字符不执行)。  
 ```sh
 tail  -2  1.txt | xargs -p -I{} touch {}.txt
 # touch hello.txt ?...n

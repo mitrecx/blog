@@ -20,7 +20,7 @@ categories: servlet
 2、当 浏览器 **再次** 访问服务器时，  
 会将之前保存的这些数据以 **cookie消息头** 的方式发送给服务器。  
 
-在相应对象response中 **添加 cookie**：  
+在 response 对象中 **添加 cookie**：  
 ```java
 Cookie c=new Cookie(String name, String value);
 response.addCookie(c);
@@ -35,9 +35,8 @@ String cookie.getValue();
 ```
 
 ## 2. cookie 编码问题
-cookie 只能保存 **合法的ASCII** 字符，  
-对于中文，需要进行编码（encode），  
-比如编码成 "utf-8" (三个字节保存一个字)，然后再传输。  
+**如果** 中文乱码，那么需要编码( encode ) 放在 cookie 中的汉字。   
+比如编码成 "utf-8" (三个字节保存一个汉字)，然后再传输。  
 
 **编码 与 解码**  
 ```java
@@ -47,8 +46,7 @@ String URLEncoder.encode(String str, String charset);
 //解码：把字符串str 按照 字符集charset 解码
 String URLDecoder.decode(String str, String charset);
 ```
-注：  
-添加cookie时，最好对cookie的值统一编码处理。  
+注：对添加到 cookie 中的字符串 编码处理，在取出 浏览器发送来的 cookie 时 也要解码处理。  
 
 ## 3. cookie 的生存时间
 缺省情况下，浏览器会把cookie 保存在内存里，  
@@ -180,8 +178,9 @@ HttpSession session=request.getSession();
 session.setAttribute("user", user);
 response.sendRedirect("success.jsp");
 //登录失败/不登录 不绑定 数据到session
-
-// success.jsp 代码：
+```
+success.jsp 代码：  
+```java
 Object obj=session.getAttribute("user");
 // 如果没有登录
 if(obj==null){

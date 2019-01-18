@@ -25,7 +25,7 @@ java.util.concurrent.ExecutionException: org.apache.catalina.LifecycleException:
 ```
 <url-pattern\>**\*.do**</url-pattern\>被我写成了  
  <url-pattern\>**/\*.do**</url-pattern\>  而导致了错误。  
- 仅仅一个 "/" 导致了起不了Tomcat。。平时一定要细心呀。  
+ 仅仅一个 "/" 导致起不了Tomcat。。平时一定要细心呀。  
 
 
 我在网上搜了半天都没找到解决方法，  

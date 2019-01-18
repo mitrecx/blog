@@ -8,7 +8,7 @@ categories: java
 ```java
 if (objectReference instanceof type)
 ```
-
+例如：  
 ```java
   public static void main(String[] a) {
     String s = "Hello";
@@ -26,7 +26,7 @@ is a String
 
 ```java
 public class Person {
-  //属性略 
+  //属性略
 	public void printInterest() {
 		System.out.println(interest);
 	}

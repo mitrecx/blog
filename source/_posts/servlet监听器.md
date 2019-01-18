@@ -173,7 +173,7 @@ public class ContextRead extends HttpServlet {
 1、 写一个 java类，实现相应的监听器接口。  
 注：   
 要依据监听的事件类型来选择合适的接口。  
-比如，要监听 **session** 的创建和销毁，需要实现 **HTTPSessionListener接口**。  
+比如，要监听 **session** 的创建和销毁，需要实现 **HttpSessionListener接口**。  
 
 2、 实现接口方法，完成监听处理逻辑。  
 
@@ -189,7 +189,10 @@ public class ContextRead extends HttpServlet {
   <welcome-file>index.jsp</welcome-file>
 </welcome-file-list>
 
-<!--其他servlet配置-->
+<!-- 监听器 -->
+<listener>
+  <listener-class>web.CountOnline</listener-class>
+</listener>
 
 <!--退出-->
 <servlet>
@@ -218,6 +221,47 @@ public class ContextRead extends HttpServlet {
 	<a href="logout" >退出</a>
 </body>
 </html>
+```
+
+CountOnline类 实现 HttpSessionListener 接口。  
+当前浏览器 HttpSession 还不存在时，每次打开 http://localhost:8080/web06-context/ 地址，
+都会触发 sessionCreated 方法，继而创建 HttpSession 对象。    
+如果当前浏览器 已经有 HttpSession 对象了，那么就不会触发 sessionCreated 方法。  
+```java
+public class CountOnline implements HttpSessionListener{
+
+	/**
+	 *  session对象创建时 会调用此方法
+	 */
+  @Override
+	public void sessionCreated(HttpSessionEvent arg0) {
+		System.out.println("session对象 正在创建..");
+		// 通过HttpSessionEvent 获取 HttpSession 对象
+		HttpSession session=arg0.getSession();
+		// 通过会话session 获取上下文ServletContext
+		ServletContext sctx=session.getServletContext();
+		Integer count=(Integer)sctx.getAttribute("count");
+		if(count==null) {
+			count=1;
+		}else {
+			count++;
+		}
+		sctx.setAttribute("count", count);
+	}
+
+	/**
+	 * session对象销毁时 会调用此方法
+	 */
+  @Override
+	public void sessionDestroyed(HttpSessionEvent arg0) {
+		System.out.println("session对象 正在销毁。。");
+		HttpSession httpSession=arg0.getSession();
+		ServletContext sctx=httpSession.getServletContext();
+		Integer count=(Integer)sctx.getAttribute("count");
+		count--;
+		sctx.setAttribute("count", count);
+	}
+}
 ```
 
 退出登录(销毁HttpSession): LogOutServlet.java   

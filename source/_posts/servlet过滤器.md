@@ -99,7 +99,7 @@ public class CommentFilterA implements Filter {
 		//可以定义一个属性，来保存 容器(web.xml,init-param)传过来的FilterConfig对象
 		//config=arg0
     //在别处 就可以 读初始化参数:
-    //String ill = config.getParameter("illegalString");
+    //String ils = config.getParameter("illegalString");
 		System.out.println("FilterA init方法。。");
 	}
 

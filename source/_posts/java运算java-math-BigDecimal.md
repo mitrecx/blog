@@ -109,7 +109,7 @@ int compareTo(BigDecimal val)
  * 若a<b : 返回-1
 
 # 4. 其他
-**乘方**：Returns a BigDecimal whose value is (this^n), The **power** is computed exactly, tounlimited precision.   
+**乘方**：Returns a BigDecimal whose value is (this^n), The **power** is computed exactly, to unlimited precision.   
 ```java
 BigDecimal pow(int n)
 ```

@@ -136,8 +136,8 @@ public String[] split(String regex, int limit)
 ```
 按照正则表达式 regex 来切割。limit 限制 **切割的次数** 。  
 1. limit 为正， 限制切割次数为（limit-1）次。  
-2. limit 为负， 不限制切割次数。  
-3. limit 为零， 不限制切割次数，但忽略切割后尾部的所有空字符串。  
+2. limit 为负， 不限制切割次数 ( 和 limit为正且足够大的效果一样 ) 。  
+3. limit 为零， 不限制切割次数，但 **忽略** 切割后尾部的所有空字符串。  
 
 比如：  
 字符串 "boo:and:foo"   
@@ -157,7 +157,7 @@ public boolean contains(CharSequence s)
 ```
 字符串 包含 子串s 返回true， 否则 false。  
 
-2、matches 方法：  
+2、matches 方法 ( 完全匹配才会返回 true )：  
 ```java
 boolean	matches(String regex)
 ```

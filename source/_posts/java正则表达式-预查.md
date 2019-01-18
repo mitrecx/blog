@@ -36,8 +36,8 @@ public static void main(String[] args) {
 ![](https://mitre.oss-cn-hangzhou.aliyuncs.com/blog-2018-11/2018-11-02_144254.png)  
 
 分析：  
-正向预查 **str(<span style="background:#ffb3d9;">?=</span>regex)**，查出前面的str，regex只做参考不做匹配。   
-反向预查 **(<span style="background:#ffb3d9;">?<=</span>regex)str**，查出后面的str，regex只做参考不做匹配。  
+正向预查 **strRE(<span style="background:#ffb3d9;">?=</span>regex)**，查出前面的strRE，regex只做参考不做匹配。   
+反向预查 **(<span style="background:#ffb3d9;">?<=</span>regex)strRE**，查出后面的strRE，regex只做参考不做匹配。  
 
 # 1. 正向预查
 利用正则表达式正向预查匹配出 **后面带数字Windows**，如下：    

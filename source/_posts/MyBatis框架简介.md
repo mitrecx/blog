@@ -76,7 +76,7 @@ SqlSessionFactory 一旦被创建就应该在应用的运行期间一直存在�
 **SqlSession**  
 每个线程都应该有它自己的 SqlSession 实例。SqlSession 的实例不是线程安全的，因此是不能被共享的。所以它的最佳的作用域是请求或方法作用域。绝对不能将 SqlSession 实例的引用放在一个类的静态域，甚至一个类的实例变量也不行。  
 如果你正在使用一种 web 框架，要考虑把 SqlSession 放在一个和 HTTP 请求对象相似的作用域中。  
-换句话说，**每次收到一个 HTTP 请求，局应该打开一个 SqlSession，返回一个响应，就关闭 SqlSession**。  
+换句话说，**每次收到一个 HTTP 请求，就应该打开一个 SqlSession，返回一个响应，就关闭 SqlSession**。  
 下面的示例就是一个确保 SqlSession 关闭的 **标准模式**：  
 ```java
 SqlSession session = sqlSessionFactory.openSession();
@@ -266,4 +266,4 @@ public class TestEmp {
   </if>
 </select>
 ```
-[MyBatis官网对动态SQL做了详细的说明](http://www.mybatis.org/mybatis-3/zh/dynamic-sql.html)，这里不再展开。  
+MyBatis官网对动态SQL做了详细的说明，[参考这里](http://www.mybatis.org/mybatis-3/zh/dynamic-sql.html)。  

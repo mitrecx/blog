@@ -28,6 +28,7 @@ locale
 ## 2.1 解决方式一
 在 linux 系统中，对文件进行编码转换：  
 ```sh
+# convert text from one character encoding to another 
 iconv -f gbk -t utf-8 test.txt > target.txt
 ```
 -f from-encoding 表示 原编码格式；  

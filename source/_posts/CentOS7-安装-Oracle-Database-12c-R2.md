@@ -96,6 +96,10 @@ unzip linuxx64_12201_database.zip
 如果 Linux 版本是 Oracle Linux 的话，可以自动设置(Automatic Setup)，两行命令就把 **安装必要条件** 全部设置好了。  
 但是我的 Linux 版本是 CentOS7，只能手动设置(Manual Setup)：  
 
+0、 配置hostname (参考 如下两张图，一张是 CentOS7，一张是 redhat6.4)：  
+![](https://mitre.oss-cn-hangzhou.aliyuncs.com/blog-2018-12/2019-01-17_154628.png)  
+![](https://mitre.oss-cn-hangzhou.aliyuncs.com/blog-2018-12/2019-01-17_153939.png)  
+
 1、<code>vim /etc/sysctl.conf</code> 添加下列内容：  
 ```
 fs.file-max = 6815744

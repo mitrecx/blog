@@ -4,7 +4,7 @@ date: 2018-11-01 09:04:29
 tags: java
 categories: java
 ---
-# 0. 前言
+# 0 前言
 过去世界各地原本各自订定当地时间，但随着交通和电讯的发达，各地交流日益频繁，不同的地方时间，造成许多困扰。  
 于是，在1884年的国际会议上制定了全球性的标准时，明定以英国伦敦 **格林威治** 这个地方为 **零度经线** 的起点，并以地球由西向东每24小时自转一周360°，订定每隔经度15°，时差1小时。  
 
@@ -26,7 +26,7 @@ CST却同时可以代表如下 4 个不同的时区:
 可以说 **早** 一点的时间 **小**，**晚** 一点的时间 **大**。  
 比如，2018>1995  
 
-# 1. java.util.Date 类
+# 1 java.util.Date 类
 
 说到 java 时间，大家都知道 **Date** 类型。  
 Date 有许多方法都已经不建议使用了(**deprecated**)，但是 Date 依然是一个最基本的时间类。  
@@ -37,19 +37,22 @@ Date 常用的方法有以下三个：
 1、获取当前系统时间
 ```java
 Date date=new Date();
+System.out.println(date);
+// 结果： Thu Nov 01 10:58:58 CST 2018
 ```
-<code>System.out.println(date);</code> 结果：  
-```
-Thu Nov 01 10:58:58 CST 2018
-```
-2、 获取时间到1970 年 1 月 1 日 00:00:00 GMT 的毫秒值
+
+2、 获取时间date 与 1970 年 1 月 1 日 00:00:00 GMT 差的毫秒值
 ```java
 //long getTime()
 long timeMs=date.getTime();
 ```
-获取当前系统时间毫秒值：  
+直接获取当前系统时间 与 1970 年 1 月 1 日 00:00:00 GMT 差的毫秒值：  
 ```java
-long begin=System.currentTimeMillis();
+long begin1=System.currentTimeMillis();
+
+//等价写法，begin1 == begin2
+Date date=new Date();
+long begin2=date.getTime();
 ```
 
 
@@ -112,11 +115,11 @@ try {
 date2: Sun Nov 11 09:09:09 CST 2018
 ```
 
-# 2. 时间的计算  
+# 2 时间的计算  
 抽象类(abstract class) **<font color='#9900cc'>Calendar</font>** 提供了丰富的计算时间的方法。  
 
 ## 2.1 初识Calendar  
-一个实例：  
+一个例子，通过 GregorianCalendar 对象的 getTime 方法获取当前系统时间：  
 ```java
 SimpleDateFormat format=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
@@ -124,7 +127,7 @@ SimpleDateFormat format=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 Calendar calendar=new GregorianCalendar();
 //Calendar calendar=Calendar.getInstance();
 
-//获取Date
+//获取Date. (Calendar的getTime返回 Date类型， Date的getTime返回 long类型)
 Date date=calendar.getTime();
 System.out.println(format.format(date));
 ```
@@ -135,47 +138,23 @@ System.out.println(format.format(date));
 
 ## 2.2 Calendar 计算时间  
 ### 2.2.1 天数加减计算：  
-```java
-public static void main(String[] args) {
-  SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-  Calendar calendar = new GregorianCalendar();
 
-  // 34天前
-  calendar.add(Calendar.DAY_OF_YEAR, -34);
-  System.out.println(format.format(calendar.getTime()));
-  // 34天后
-  calendar.add(Calendar.DAY_OF_MONTH, 34);
-  System.out.println(format.format(calendar.getTime()));
-  // 64天后
-  calendar.add(Calendar.DAY_OF_WEEK, 64);
-  System.out.println(format.format(calendar.getTime()));
-}
-```
-结果如下，当前时间是 2018-11-01 16:00:42 :  
-```
-2018-09-28 16:00:42
-2018-11-01 16:00:42
-2019-01-04 16:00:42
-```
-分析：  
 ```java
 void add(int field, int amount)
 ```
 **<font color='#e68a00'>field</font>** 是日期字段类型， **<font color='#e68a00'>amount</font>** 表示时间的偏移总量。  
-DAY_OF_YEAR，DAY_OF_MONTH，DAY_OF_WEEK在上面的例子中效果是相同的。  
-原因在于 **add** 的内部实现最终处理是一样的。  
 
 **<font color='#e68a00'>field</font>** 可用的名称如下，进行时间的运算离不开这些 field ：    
 ```java
 private static final String[] FIELD_NAME = {
     "ERA",
-    "YEAR",
-    "MONTH",
+    "YEAR", // <------年
+    "MONTH", // <----月
     "WEEK_OF_YEAR",
     "WEEK_OF_MONTH",
-    "DAY_OF_MONTH",
-    "DAY_OF_YEAR",
-    "DAY_OF_WEEK",
+    "DAY_OF_MONTH", // <-- 月中日( (几月)几号 )  
+    "DAY_OF_YEAR", // <-- 年中日
+    "DAY_OF_WEEK", // <-- 周中日( 周几 )
     "DAY_OF_WEEK_IN_MONTH",
     "AM_PM",
     "HOUR",
@@ -187,6 +166,33 @@ private static final String[] FIELD_NAME = {
     "DST_OFFSET"
 };
 ```
+
+**DAY_OF_YEAR**，DAY_OF_MONTH，DAY_OF_WEEK 在下面的例子中效果是相同的。  
+原因它们在于 **<font color=green>add方法</font>** 的内部实现是一样的 ( 为了便于理解，建议使用 **DAY_OF_YEAR** )。  
+但是这3个 **<font color='#e68a00'>field</font>** 用在别的方法中时，含义就不同了，如 get、set方法。  
+```java
+public static void main(String[] args) {
+  SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+  Calendar calendar = new GregorianCalendar();
+
+  // 34天前，calendar对象的时间被修改为 34天前
+  calendar.add(Calendar.DAY_OF_YEAR, -34);
+  System.out.println(format.format(calendar.getTime()));
+  // 34天后，calendar对象的时间 又回到原值
+  calendar.add(Calendar.DAY_OF_MONTH, 34);
+  System.out.println(format.format(calendar.getTime()));
+  // 64天后，calendar对象的时间被修改为 64天后
+  calendar.add(Calendar.DAY_OF_WEEK, 64);
+  System.out.println(format.format(calendar.getTime()));
+}
+```
+结果如下，当前时间是 2018-11-01 16:00:42 :  
+```
+2018-09-28 16:00:42
+2018-11-01 16:00:42
+2019-01-04 16:00:42
+```
+
 
 ### 2.2.2 年月加减计算  
 还是 add 函数，只是 field_name 改了。  

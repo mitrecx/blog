@@ -1,5 +1,5 @@
 ---
-title: Ubuntu防火墙
+title: Linux防火墙操作
 date: 2018-12-25 11:04:32
 tags: Ubuntu
 categories: Linux
@@ -14,7 +14,7 @@ categories: Linux
 2、只有符合安全策略的数据流才能通过防火墙  
 3、应用层防火墙具备更细致的防护能力  
 
-# 2 UFW
+# 2 UFW -- Ubuntu
 
 UFW (**<font color=red>Uncomplicated Firewall</font>**，简单的防火墙) is a program for managing a netfilter firewall designed to be easy to use.   
 It uses a **command-line interface** consisting of a small number of simple commands(由少量简单命令组成的命令行接口), and uses **iptables** for configuration.     
@@ -44,3 +44,23 @@ Typical usage is:
 ```sh
 man ufw
 ```
+
+# 3 iptables -- redhat
+
+查询防火墙状态:  
+```sh
+service iptables status
+```
+
+```sh
+#停止防火墙:
+service iptables stop
+
+#启动防火墙:
+service iptables start
+
+#重启防火墙:
+service iptables restart
+```
+
+防火墙配置文件 /etc/sysconfig/iptables 。  
