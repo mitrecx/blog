@@ -18,7 +18,9 @@ sun公司制定的一种用来**扩展web服务器功能** 的 **组件 (规范)
 # 2. 如何写一个servlet  
 不利用开发工具，纯手写一个servlet：  
 1. 写一个java类，实现 Servlet接口 或者 **继承 HttpServlet抽象类** 。  
-2. 编译
+2. 编译  
+终端 <code>javac</code> 命令编译需要引入 javax 扩展包中的 servlet-api.jar (javax.servlet.\*，在 Tomcat 主目录的 lib 文件夹中有此包)。  
+如果在 eclipse 中开发，需要 Window -》 Preferences -》Server -》 Runtime Environments 下 添加 Tomcat 的主目录，同时需要注意 右击项目 -》 build path -》libraries -》 add library -》 Server Runtime 在项目上 添加 Tomcat 容器。  
 3. 打包（变成一个组件）  
 创建具有如下结构的文件夹：  
 APPname/（应用名）  
@@ -38,7 +40,7 @@ http://ip:port/APPname/url-pattern
 在浏览器地址栏输入一个地址  
 step1.&nbsp;  browser 根据ip, port 建立连接。  
 step2.&nbsp; browser 将相关数据 (请求参数) 打包，然后发送。  
-step3.&nbsp; Tomcat 解析请求数据包，并且将解析到的数据封装到 request。 对象，同时创建一个response对象。  
+step3.&nbsp; Tomcat 解析请求数据包，并且将解析到的数据封装到 request 对象，同时创建一个response对象。  
 step4.&nbsp; Tomcat容器创建 servlet 对象，然后调用该对象的 service() 方法。  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color=red>注</font>：Tomcat 容器会将 request 和 response 传递，通过 request 获得请求参数，将处理结果写到 response 。  
 step5.&nbsp; Tomcat 容器读取 response 中的处理结果，并将处理结果打包发送给 browser。  

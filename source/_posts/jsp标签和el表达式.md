@@ -88,6 +88,17 @@ el (Expression Language) 表达式是一套简单的运算规则，用于给jsp�
 * **<font color='#00B2EE'>${paramValues.friends}</font>**  
 等价于request.getParameterValues("friends")  
 
+如果 el 表达式解析不了，请检查 web.xml 文件 的 web-app 标签属性，如下配置：  
+```jsp
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+	id="WebApp_ID" version="3.1">
+
+</web-app>
+```
+
+
 <h2 id="1">3. jsp 自定义标签</h2>
 tld (tag lib descriptor)   
 自己写一个标签：  

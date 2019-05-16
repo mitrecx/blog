@@ -15,11 +15,12 @@ categories: 数据库
  apt-get isntall mysql-client
  sudo apt-get install libmysqlclient-dev
  ```
-查看是否安装成功：
+启动 mysql 服务：
  ```sh
+ service mysql start
  sudo netstat -apt | grep mysql
  ```
-如果看到有mysql 的socket处于 listen 状态则表示安装成功。  
+如果看到有mysql 的 socket 处于 listen 状态则表示 启动成功。  
 
 ## 2. MySQL命令行
 
