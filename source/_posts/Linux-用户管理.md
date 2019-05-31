@@ -19,6 +19,16 @@ passwd mitre
 -s: name of user's login shell  
 -m: home directory  
 
+或者：  
+```sh
+sudo adduser mitre
+```
+**useradd** 和 **adduser** 区别：   
+useradd 如果后面不添加任何参数选项，创建出来的默认是“三无”用户：一无Home Directory，二无密码，三无系统Shell。  
+adduser 创建用户的过程是一种人机对话，系统会提示你输入各种信息，然后会根据这些信息帮你创建新用户。  
+
+
+
 ## 2. 删除用户
 ```sh
 userdel -r mitre
