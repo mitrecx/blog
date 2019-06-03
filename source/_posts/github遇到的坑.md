@@ -39,16 +39,17 @@ FATAL Something's wrong. Maybe you can find the solution here: http://hexo.io/do
 ```sh
 ssh -T git@github.com
 ```
-![两个帐号都可以连接到github](http://odtumk8fc.bkt.clouddn.com/gitkeng.png )
+[两个帐号都可以连接到github]()
 
 但是 用sudo就不行  
-![sudo ssh连接github提示publickey不行](http://odtumk8fc.bkt.clouddn.com/sudo-git-keng.png)
+[sudo ssh连接github提示publickey不行]()
 
 原因很明显了：
-**我的sshkey　是mitrecx用户生成的。sudo执行命令时，不是mitrecx用户在执行，是root用户执行的，所以github会拒绝接受git请求。**  
-这样看似很“安全”：我用别人（root）给我分配的用户使用自己的github，别人（root）可以看我用户文件，但是不能用我的sshkey 。  
-sshkey在 __~./ssh__ 目录下，别人（root）是可以复制，查看的！
+**我用的 sshkey　是 mitrecx 用户生成的。sudo执行 命令时，用的是 root 用户的 sshkey，所以github会拒绝接受git请求。**    
+sshkey在 __~./ssh__ 目录下，root 可以复制，查看 mitrecx 的 sshkey, 感觉有点不安全.  
+但是, root 用户 连 mitrecx 的 登录密码 都能改,  还说啥安全不安全的.....
 
-github权限的坑踩完了。
-为什么最初我在　hexo　d　会出出错呢？
-原因是我在hexo　d　执行前，执行的是sudo　hexo　g　，　而不是　hexo　g　。
+github权限的坑踩完了。  
+
+为什么最初我在 <code>hexo d</code> 会出出错呢？
+**原因是我在 <code>hexo d</code> 执行前，执行的是 <code>sudo hexo g</code> ，而不是 <code>hexo g</code>** 。

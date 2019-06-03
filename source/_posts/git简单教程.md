@@ -7,16 +7,16 @@ categories: git
 ---
 # 从零开始－－简单使用
 ```shell
-git init #初始化(新建)一个git仓库
+git init #初始化(新建)一个 本地 git 仓库
 
-#第一次把本地仓库提交到github
-#添加到暂存区，不添加的话 filename是untracked ,untracked files不能commit
+#第一次把本地仓库提交到 github
+#添加到 暂存区，不添加的话 filename是 untracked ,untracked files不能 commit
 git add <filename>  
-#把暂存区的内容提交到HEAD,仍然在本地仓库
+#把暂存区的内容提交到 HEAD, 仍然在 本地git仓库
 git commit -m "关于本次提交的说明信息"
-#本地仓库连接远程仓库 ，连接名为origin
+#本地仓库连接远程仓库 ，连接名为 origin
 git remote add origin  git@github.com:username/repository.git
-#把HEAD里的内容提交到github上的master分支
+#把 HEAD 里的内容提交到 github 上的 master 分支
 git push origin master
 
 #再次操作
@@ -42,7 +42,10 @@ git status
 ```
 如果git add一个不想要的提交的file，可以用以下命令清除
 ```shell
-git	rm	--cached <filename> #移除这个缓存
+git rm --cached <filename> #只是删除 暂存区 中的文件
+# 不想 追踪 track 的文件 要 添加到 .gitignore 文件中呀  
+
+git rm -f <filename> #删除 暂存区 中的文件 同时 删除 磁盘上本地文件, 不可恢复
 ```
 # 从一开始
 ## 工作流
@@ -71,13 +74,57 @@ git add .
 git add <filename1,2,3>
 ```
 还有个方法，在当前目录下建立一个名为
-<font color=blue size=3>.gitignore</font> 的文件。然后把想要忽略的文件名添加在<font color=blue size=3>.gitignore</font>中，![文件内容](http://odtumk8fc.bkt.clouddn.com/gitignore.png)
-然后执行
-```sh
-git add .
+<font color=blue size=3>.gitignore</font> 的文件。然后把想要忽略的文件名添加在<font color=blue size=3>.gitignore</font>中,  这样这些文件就不会 出现在未跟踪文件列表.  
+
+.gitignore 用 glob 模式匹配 (git 命令 也可以使用 glob 模式).  
+所谓的 glob 模式是指 shell 所使用的简化了的正则表达式。   
+星号（\*）匹配零个或多个任意字符；  
+[abc] 匹配任何一个列在方括号中的字符（这个例子要么匹配一个 a，要么匹配一个 b，要么匹配一个 c）；  
+问号（?）只匹配一个任意字符；  
+如果在方括号中使用短划线分隔两个字符，表示所有在这两个字符范围内的都可以匹配（比如 [0-9] 表示匹配所有 0 到 9 的数字）。  
+使用两个星号（\*) 表示匹配任意中间目录，比如 a/\*\*/z 可以匹配 a/z , a/b/z 或 a/b/c/z 等。  
+<font color=blue size=3>.gitignore</font> [示例](https://git-scm.com/book/zh/v2/Git-%E5%9F%BA%E7%A1%80-%E8%AE%B0%E5%BD%95%E6%AF%8F%E6%AC%A1%E6%9B%B4%E6%96%B0%E5%88%B0%E4%BB%93%E5%BA%93):  
+ ```
+ # no .a files
+ *.a
+
+ # but do track lib.a, even though you're ignoring .a files above
+ !lib.a
+
+ # only ignore the TODO file in the current directory, not subdir/TODO
+ /TODO
+
+ # ignore all files in the build/ directory
+ build/
+
+ # ignore doc/notes.txt, but not doc/server/arch.txt
+ doc/*.txt
+
+ # ignore all .pdf files in the doc/ directory
+ doc/**/*.pdf
+ ```
+
+撤消对文件的修改:  
+如果 修改 了 已追踪文件 README (未提交), 但是 后来又想 撤回 修改(撤回到暂存区的状态):    
+```
+git checkout -- README
+```
+如果 暂存区 的想 撤回 到 已提交的本地git库:  
+```
+# 先 移除 暂存区. 也可以使用: git rm --cached README
+git reset README
+# 再 checkout 检查撤回
+git checkout -- README
 ```
 
-git add是 git 基本工作流程的第一步；使用如下命令以实际提交改动：
+放弃 本地git仓库 提交:  
+```
+git fetch --all
+git reset --hard origin/master
+```
+
+
+git add是 git 基本工作流程的第一步；使用如下命令以实际提交改动 到本地仓库：
 ```shell
  git commit -m "代码提交信息"
 ```
@@ -139,11 +186,10 @@ git clone -b [new_branch_name]  xxx.git
   remotes/origin/master
   ```
 　　2.  在本地新建同名的("dev")分支，并切换到该分支
+
 ```shell
 git checkout -t origin/dev
 #等同于：
 git checkout -b dev origin/dev
 ```
 执行完2，发现dev分支的内容已经存在于本地仓库了。
-
-# 待续...
