@@ -6,6 +6,9 @@ tags:
 categories: git
 ---
 # 从零开始－－简单使用
+首先, [强烈推荐这个网站](https://git-scm.com/book/zh/v2).    
+
+
 ```shell
 git init #初始化(新建)一个 本地 git 仓库
 
@@ -123,7 +126,14 @@ git fetch --all
 git reset --hard origin/master
 ```
 
+注意:  
+```
+# 远程仓库中抓取 数据, 它并不会自动合并或修改你当前的工作
+git fetch [remote-name]
 
+# 自动的抓取然后合并远程分支到当前分支
+git pull [remote-name] [branch-name]
+```
 git add是 git 基本工作流程的第一步；使用如下命令以实际提交改动 到本地仓库：
 ```shell
  git commit -m "代码提交信息"
@@ -174,22 +184,71 @@ git clone xxx.git "指定目录"
 #3.clone时创建新的分支替代默认Origin HEAD（master）
 git clone -b [new_branch_name]  xxx.git
 ```
- clone 远程分支
+git clone 命令默认的只会建立master分支.  
 
-　　git clone 命令默认的只会建立master分支，如果你想clone指定的某一远程分支(如：dev)的话，可以如下：
 
-　　1. 查看所有分支(包括隐藏的)  git branch -a 显示所有分支，如：　　　
+1  查看所有分支(包括隐藏的)  git branch -a 显示所有分支，如：　　　
 ```
 * master
   remotes/origin/HEAD -> origin/master
   remotes/origin/dev
   remotes/origin/master
-  ```
-　　2.  在本地新建同名的("dev")分支，并切换到该分支
-
-```shell
+```
+2  在本地新建同名的("dev")分支，并切换到该分支  
+```
 git checkout -t origin/dev
 #等同于：
 git checkout -b dev origin/dev
 ```
-执行完2，发现dev分支的内容已经存在于本地仓库了。
+执行完2，发现dev分支的内容已经存在于本地仓库了。  
+
+# 其他常用 git命令
+假设 远程分支如下:  
+```
+$ git remote show origin
+* remote origin
+  Fetch URL: https://github.com/mitrecx/design-pattern.git
+  Push  URL: https://github.com/mitrecx/design-pattern.git
+  HEAD branch: master
+  Remote branches:
+    develop  tracked
+    master   tracked
+    test-old new (next fetch will store in remotes/origin)
+    testing  tracked
+  Local branches configured for 'git pull':
+    develop merges with remote develop
+    master  merges with remote master
+    testing merges with remote testing
+  Local refs configured for 'git push':
+    develop pushes to develop (up to date)
+    master  pushes to master  (up to date)
+    testing pushes to testing (fast-forwardable)
+
+```
+**远程仓库名:** origin.   
+**远程分支** 有 4 个: master, develop, testing, test-old.  
+**本地分支** 有 3 个: master, develop, testing.  
+三个远程分支, 都被追踪了(tracked) . 同时 <code> git pull </code> 自动合并:  
+develop--> origin/develop;   
+master--> origin/master.  
+所以, 要想合并 origin/testing 分支 到 testing, 要手动 merge.  
+但也可以用命令 <code>git branch -u origin/testing</code> 实现自动合并映射 (设置跟踪分支) .     
+
+```
+# 获得远程分支信息
+git remote show (remote)
+
+# 抓取 远程仓库origin 的数据 到本地
+git fetch orign
+# 把抓取到的 远程仓库 master 分支数据 和 本地仓库的 master分支合并
+git checkout master
+git merge origin/master
+# 上述 抓取合并 操作 一般等价于 git pull origin master
+
+# 查看设置的所有跟踪分支
+git branch -vv
+
+# 查看 分叉历史
+git log --oneline --graph --all
+
+```
