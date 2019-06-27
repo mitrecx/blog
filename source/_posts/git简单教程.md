@@ -203,6 +203,14 @@ git checkout -b dev origin/dev
 执行完2，发现dev分支的内容已经存在于本地仓库了。  
 
 # 其他常用 git命令
+
+**远程跟踪分支** 是 **远程分支** 状态 **的 引用**, 远程跟踪分支 也叫 **上游分支( upstream )** .   
+它们是 不能移动的本地引用，当 你做任何网络通信操作时，它们会自动移动.   
+它们以 (remote)/(branch) 形式命名.   
+例如，如果你想要看你最后一次与远程仓库 origin 通信时 master 分支的状态，你可以查看 **远程跟踪分支 origin/master** 。  
+
+(从一个 远程跟踪分支 检出一个 本地分支 叫 “跟踪分支” , 简单 理解为 本地分支 就好了.)   
+
 假设 远程分支如下:  
 ```
 $ git remote show origin
@@ -224,7 +232,15 @@ $ git remote show origin
     master  pushes to master  (up to date)
     testing pushes to testing (fast-forwardable)
 
+$ git branch -vv
+  develop  68615f5 [origin/develop] x
+  iss2     6bf377a none-iss2
+  master   ffa65b3 [origin/master] no licence - master
+* testing  92042b6 [origin/testing: ahead 18] 义之所至 生死相随
+
 ```
+
+
 **远程仓库名:** origin.   
 **远程分支** 有 4 个: master, develop, testing, test-old.  
 **本地分支** 有 3 个: master, develop, testing.  
@@ -232,7 +248,10 @@ $ git remote show origin
 develop--> origin/develop;   
 master--> origin/master.  
 所以, 要想合并 origin/testing 分支 到 testing, 要手动 merge.  
-但也可以用命令 <code>git branch -u origin/testing</code> 实现自动合并映射 (设置跟踪分支) .     
+但也可以用命令 <code>git branch -u origin/testing</code> 设置 **跟踪分支** (即, 设置本地 testing 分支和 远程分支对应关系).   
+
+
+
 
 ```
 # 获得远程分支信息
@@ -251,4 +270,7 @@ git branch -vv
 # 查看 分叉历史
 git log --oneline --graph --all
 
+
+# 删除远程 分支 testing
+git push origin --delete testing
 ```
