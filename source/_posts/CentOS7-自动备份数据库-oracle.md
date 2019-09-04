@@ -1,5 +1,5 @@
 ---
-title: CentOS7 自动备份数据库-oracle
+title: CentOS7 定时备份数据库-oracle
 date: 2019-06-27 17:17:35
 tags: 数据库
 categories: 数据库
@@ -98,7 +98,7 @@ crontab 配置中 有一个坑:
 **所有的 用户的环境变量 都会失效** !   
 **系统自带的环境变量会失效, 自己配置的环境变量也会失效.**    
 
-从上面的内容可以看到 配置了 **PATH** 环境变量, 这样我们才能在 下面的命令代码(date > /home/oracle/Documents/1.txt)中 用 系统中的一些命令.  
+从上面的内容可以看到 配置了 **PATH** 环境变量, 这样我们才能 各个 bin 中的命令.  
 
 **<font color='#8a00e6'>crontab 文件定时代码格式</font>**:  
 ```

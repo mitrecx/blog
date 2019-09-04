@@ -51,6 +51,11 @@ true
 ```
 从上面程序结果可以看出，一个类Student 只有一个 类类型Class 对象，不论Class对象是如何创建的，不论Class对象创建多少次。  
 
+事实上, 通过 <code>ClassLoader</code> 也能 获取 Class对象:  
+```Java
+Class<?> clazz = MitreTest.class.getClassLoader().loadClass(("cn.mitrecx.Hello"));
+```
+
 # 2 获取构造方法 并调用--newInstance
 **Class对象** 获取 **<font color=red>所有 public 构造函数</font>**： <font color='#8a00e6'>getConstructors()</font>  
 
