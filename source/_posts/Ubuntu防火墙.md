@@ -64,3 +64,21 @@ service iptables restart
 ```
 
 防火墙配置文件 /etc/sysconfig/iptables 。  
+
+# CentOS 7 防火墙
+
+CentOS 7.0默认使用的是firewall作为防火墙
+
+查看防火墙状态  
+```sh
+firewall-cmd --state
+```
+停止firewall  
+```sh
+systemctl stop firewalld.service
+```
+
+禁止firewall开机启动  
+```sh
+systemctl disable firewalld.service
+```

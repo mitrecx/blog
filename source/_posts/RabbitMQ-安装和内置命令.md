@@ -25,7 +25,7 @@ RabbitMQ 是由 RabbitMQ Technologies Ltd 开发并且提供商业支持.
 
 这里简单说明一下, 如何 在 RedHat 6.7 上离线安装 RabbitMQ:  
 1, 下载 [erlang-22.0.7-1.el6.x86_64.rpm](https://packagecloud.io/rabbitmq/erlang).   
-2, 下载 [socat-1.7.2.3-1.el6.x86_64.rpm](http://www.rpmfind.net/linux/rpm2html/search.php?query=socat(x86-64)), el 表示Red Hat **E** nterprise **L** inux, EL6 是 Red Hat 6.x.  
+2, 下载 [socat-1.7.2.3-1.el6.x86_64.rpm](http://www.rpmfind.net/linux/rpm2html/search.php?query=socat(x86-64)), el 表示Red Hat **Enterprise Linux**, EL6 表示 企业版 Linux 6.x.  
 3, 下载[rabbitmq-server-3.7.17-1.el6.noarch.rpm](https://www.rabbitmq.com/install-rpm.html#downloads).  
 4, 用 root 用户 执行如下命令:  
 ```sh
@@ -38,28 +38,28 @@ sudo rpm -ivh rabbitmq-server-3.7.17-1.el6.noarch.rpm
 service rabbitmq-server start
 ```
 
-# 2. RabbitMQ 基本概念  
-**Broker**: 简单来说就是消息队列服务器实体(代理).  
+# 3. RabbitMQ 基本概念  
+**<font color='#2eb82e'>Broker</font>**: 简单来说就是消息队列服务器实体(代理).  
 
-Exchange: 消息交换机，它指定消息按什么规则，路由到哪个队列.  
+**<font color='#2eb82e'>Exchange</font>**: 消息交换机，它指定消息按什么规则，路由到哪个队列.  
 
 **Queue**: 消息队列载体，每个消息都会被投入到一个或多个队列.  
 
-Binding: 绑定，它的作用就是把exchange和queue按照路由规则绑定起来.  
+**<font color='#2eb82e'>Binding</font>**: 绑定，它的作用就是把exchange和queue按照路由规则绑定起来.  
 
 **Routing Key**: 路由关键字，exchange根据这个关键字进行消息投递.  
 
-vhost: 虚拟主机，一个broker里可以开设多个vhost，用作不同用户的权限分离.  
+**<font color='#2eb82e'>vhost</font>**: 虚拟主机，一个broker里可以开设多个vhost，用作不同用户的权限分离.  
 
 **channel**: 消息通道，在客户端的每个连接里，可建立多个channel，每个channel代表一个会话任务.  
 
-producer: 消息生产者，就是投递消息的程序.  
+**<font color='#2eb82e'>producer</font>**: 消息生产者，就是投递消息的程序.  
 
-consumer: 消息消费者，就是接受消息的程序.  
+**<font color='#2eb82e'>consumer</font>**: 消息消费者，就是接受消息的程序.  
 
-# 3. RabbitMQ 常用命令  
+# 4. RabbitMQ 常用命令  
 
-## 3.1 服务启动与关闭
+## 4.1 服务启动与关闭
 ```sh
 # 启动
 service rabbitmq-server start
@@ -69,7 +69,7 @@ service rabbitmq-server stop
 service rabbitmq-server restart
 ```
 
-## 3.2 RabbitMQ 提供的 命令行工具
+## 4.2 RabbitMQ 提供的 命令行工具
 
 RabbitMQ comes with multiple **Command Line Tools**, Different tools cover different usage scenarios :
 
@@ -91,12 +91,14 @@ rabbitmq-plugins help
 
 静下心来把 帮助文档 读一遍, 同时把 [官网说明](https://www.rabbitmq.com/cli.html) 读一遍, 基本上所有命令就都能理解了.  
 
+----
 
-
-这里现在简单看下 **<font color='#8a00e6'>rabbitmqctl</font>** 和 **<font color='#8a00e6'>rabbitmq-plugins</font>** 命令行工具 提供的的常用命令 .  
+简单看下 **<font color='#8a00e6'>rabbitmqctl</font>** 和 **<font color='#8a00e6'>rabbitmq-plugins</font>** 命令行工具 提供的的常用命令 .  
 
 **<font color='#8a00e6'>rabbitmqctl</font>** 是 RabbitMQ 附带的原生的 CLI 工具(CLI tool).  
+
 **<font color='#8a00e6'>rabbitmqctl</font>** 主要提供一些 管理操作:  
+
 * Stopping node  
 * Access to node status, effective configuration, health checks  
 * **Virtual host management**  
@@ -116,7 +118,7 @@ rabbitmqctl delete_user mitre
 # 设置角色
 rabbitmqctl set_user_tags mitre administrator
 # 设置用户权限 和 vhost
-rabbitmqctl  set_permissions  [--vhost <vhost>] <username> <conf> <write> <read>
+# rabbitmqctl  set_permissions  [--vhost <vhost>] <username> <conf> <write> <read>
 rabbitmqctl  set_permissions  --vhost / mitre . . .
 ```
 
