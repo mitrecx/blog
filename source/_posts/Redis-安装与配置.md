@@ -54,19 +54,19 @@ source /etc/bashrc
 ## 2.3 配置 云主机的 安全组
 如下开放 6342 端口:  
 
-![](https://mitre.oss-cn-hangzhou.aliyuncs.com/blog2019/pic09/redis.png?Expires=1569483171&OSSAccessKeyId=TMP.hVdAfGhbtviU16RhyBhYqDm1fd7RgtBPFxVNSq4PixKWMckSgzUFnAdR6teGokySgJsS1SpnoCNgbiAbUbDAVrAPtksaX3LTEkf6AvPXyw8WtvSVXK3BZkwdnkNk2r.tmp&Signature=rg%2Fa11ojkZgh%2F9erPwzM7%2Bhj0FU%3D)
+![](https://mitre.oss-cn-hangzhou.aliyuncs.com/blog2019/pic09/redis.png)  
 
 ## 2.4 运行 Redis
 ```sh
 # 运行 Redis
 redis-server redis.conf
 
-# 连接
+# 客户端 连接
 redis-cli -h IP地址 -p 端口号 -a 密码
 ```
 
 # 3 Redis 数据类型
-支持五种 基本的 数据类型：  
+Redis 支持五种 基本的 数据类型：  
 1, string (字符串)   
 2, hash (哈希)  
 3, list (列表)   
