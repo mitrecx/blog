@@ -11,7 +11,7 @@ categories: Redis
 redis是一个开源 (bsd许可) 的 **内存数据结构存储**，用作数据库、缓存和消息代理。  
 
 Redis is written in ANSI C and works in most POSIX systems like Linux, \*BSD, OS X without external dependencies.  
-Redis 用 SNSI C 语言编写, 能够无需任何外部依赖地 运行在大多数 POSIX 系统中, 如, Linux, BSD, OS X.  
+Redis 用 ANSI C 语言编写, 能够无需任何外部依赖地 运行在大多数 POSIX 系统中, 如, Linux, BSD, OS X.  
 
 目前, [Redis 官网](https://redis.io) 提供的最新版本是 5.0.5.  
 

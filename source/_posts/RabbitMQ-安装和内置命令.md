@@ -20,10 +20,25 @@ RabbitMQ 是由 RabbitMQ Technologies Ltd 开发并且提供商业支持.
 # 2. 下载并安装 RabbitMQ
 目前, RabbitMQ 最新的发布版本是 3.7.17 . 有关发行说明, 参见 [changelog](https://www.rabbitmq.com/changelog.html) .  
 安装方法参见这个 [页面](https://www.rabbitmq.com/download.html) . 不管是 Linux, BSD, UNIX, 还是 Windows, 还是 MacOS 都有对应的 安装指南.  
+最简单的安装方式 是用 [PackageCloud Yum Repository](https://www.rabbitmq.com/install-rpm.html#package-cloud) 安装.  
+安装步骤如下:  
 
-因为工作在云内, 不能连公网的缘故, 所以我在 云内主机上(Redhat 6.7) 离线安装的 RabbitMQ .  
+```sh
+curl -s https://packagecloud.io/install/repositories/rabbitmq/erlang/script.rpm.sh | sudo bash
+yum -y install erlang
+curl -s https://packagecloud.io/install/repositories/rabbitmq/rabbitmq-server/script.rpm.sh | sudo bash
+yum -y install rabbitmq-server
+# 查看 安装包信息
+yum info erlang
+yum info rabbitmq-server
+# 启动 rabbitmq
+systemctl start rabbitmq-server
+```
 
-这里简单说明一下, 如何 在 RedHat 6.7 上离线安装 RabbitMQ:  
+
+**如果 安装主机无法上网, 那么就要采用离线安装了**.  
+
+简单说明一下, 如何 在 RedHat 6.7 上离线安装 RabbitMQ (工作环境的原因, 我就是这么安装的):  
 1, 下载 [erlang-22.0.7-1.el6.x86_64.rpm](https://packagecloud.io/rabbitmq/erlang).   
 2, 下载 [socat-1.7.2.3-1.el6.x86_64.rpm](http://www.rpmfind.net/linux/rpm2html/search.php?query=socat(x86-64)), el 表示Red Hat **Enterprise Linux**, EL6 表示 企业版 Linux 6.x.  
 3, 下载[rabbitmq-server-3.7.17-1.el6.noarch.rpm](https://www.rabbitmq.com/install-rpm.html#downloads).  
